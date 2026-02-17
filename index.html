@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psychology Fundamentals &mdash; Essential Study Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#faf7f6;--bg-card:#fff;--text:#2c2c2c;--text-muted:#6b6b6b;--accent:#c0616b;--accent-dark:#9e4550;--accent-light:#fceced;--border:#e0d5d3;--border-light:#f0eae8;--highlight:#fef8e6;--highlight-border:#e8c84a;--mnemonic-bg:#edf7ee;--mnemonic-border:#6bbd72;--formula-bg:#fceced;--formula-border:#d4868e;--shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);--shadow-hover:0 2px 8px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,#5e2028 0%,#c0616b 40%,#d8898f 100%);color:#fff;padding:4rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+    .hero h1{font-family:'Crimson Pro',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;letter-spacing:-.02em;position:relative}
+    .hero .subtitle{font-size:1.15rem;opacity:.85;margin-top:.5rem;font-weight:300;position:relative}
+    .hero .tagline{display:inline-block;margin-top:1rem;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);padding:.35rem 1.2rem;border-radius:99px;font-size:.85rem;font-weight:500;letter-spacing:.03em;position:relative}
+
+    /* LAYOUT */
+    .container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+    .toc{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem;margin:2rem auto;max-width:860px;box-shadow:var(--shadow)}
+    .toc h2{font-family:'Crimson Pro',serif;font-size:1.4rem;font-weight:600;color:var(--accent-dark);margin-bottom:1rem}
+    .toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.5rem}
+    .toc-grid a{color:var(--text);text-decoration:none;padding:.45rem .7rem;border-radius:6px;font-size:.92rem;transition:all .2s;display:flex;align-items:baseline;gap:.4rem}
+    .toc-grid a:hover{background:var(--accent-light);color:var(--accent-dark)}
+    .toc-grid a .num{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:500;min-width:1.6rem}
+
+    /* CARDS */
+    .section{margin:2.5rem 0}
+    .section-anchor{display:block;position:relative;top:-1rem;visibility:hidden}
+    .card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2.2rem;box-shadow:var(--shadow);transition:box-shadow .3s,transform .3s}
+    .card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+    .card h2{font-family:'Crimson Pro',serif;font-size:1.6rem;font-weight:600;color:var(--accent-dark);margin-bottom:.3rem;display:flex;align-items:baseline;gap:.5rem}
+    .card h2 .num{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent);font-weight:500}
+    .card h3{font-family:'Crimson Pro',serif;font-size:1.15rem;font-weight:600;color:var(--text);margin:1.5rem 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid var(--border-light)}
+    .card p,.card li{font-size:.97rem;margin-bottom:.5rem}
+    .card ul,.card ol{padding-left:1.3rem;margin:.5rem 0}
+    .card li{margin-bottom:.35rem}
+
+    /* TABLES */
+    .fact-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.92rem}
+    .fact-table th{background:var(--accent);color:#fff;padding:.55rem .75rem;text-align:left;font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+    .fact-table td{padding:.55rem .75rem;border-bottom:1px solid var(--border-light)}
+    .fact-table tr:hover td{background:var(--accent-light)}
+    .fact-table td:first-child{font-weight:500;white-space:nowrap}
+
+    /* CALLOUT BOXES */
+    .formula-box{background:var(--formula-bg);border-left:3px solid var(--formula-border);padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:1rem 0;font-family:'JetBrains Mono',monospace;font-size:.88rem;line-height:1.8}
+    .mnemonic-box{background:var(--mnemonic-bg);border-left:3px solid var(--mnemonic-border);padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:1rem 0}
+    .mnemonic-box .label{font-weight:700;color:#3a7d42;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+    .highlight-box{background:var(--highlight);border-left:3px solid var(--highlight-border);padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:1rem 0}
+    .highlight-box .label{font-weight:700;color:#b8941e;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+
+    code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--accent-light);padding:.15em .4em;border-radius:4px}
+
+    /* INTERACTIVE TABS */
+    .interactive{margin:3rem 0}
+    .tab-bar{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+    .tab-btn{padding:.6rem 1.3rem;border:2px solid var(--border);background:var(--bg-card);border-radius:8px;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:.92rem;font-weight:600;color:var(--text-muted);transition:all .2s}
+    .tab-btn:hover{border-color:var(--accent);color:var(--accent)}
+    .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    /* QUIZ */
+    .quiz-progress{font-size:.9rem;color:var(--text-muted);margin-bottom:1rem;font-weight:500}
+    .quiz-q{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1rem;box-shadow:var(--shadow)}
+    .quiz-q p{font-weight:600;margin-bottom:.8rem;font-size:1rem}
+    .quiz-q label{display:block;padding:.5rem .8rem;margin:.3rem 0;border-radius:6px;cursor:pointer;transition:background .2s;font-size:.93rem}
+    .quiz-q label:hover{background:var(--accent-light)}
+    .quiz-q input{margin-right:.5rem}
+    .quiz-q .feedback{margin-top:.6rem;padding:.7rem 1rem;border-radius:6px;font-size:.9rem;display:none}
+    .quiz-q .feedback.correct{background:#e8f5e9;border:1px solid #81c784;color:#2e7d32}
+    .quiz-q .feedback.incorrect{background:#ffebee;border:1px solid #e57373;color:#c62828}
+    .quiz-q .check-btn{margin-top:.6rem;padding:.45rem 1.1rem;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.88rem;font-weight:600;transition:background .2s}
+    .quiz-q .check-btn:hover{background:var(--accent-dark)}
+    .quiz-q .check-btn:disabled{opacity:.5;cursor:default}
+    .score-bar{background:var(--accent-light);border-radius:8px;padding:1rem 1.5rem;text-align:center;font-weight:600;font-size:1.05rem;color:var(--accent-dark);margin-top:1rem}
+
+    /* FLASHCARDS */
+    .fc-filters{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+    .fc-filter-btn{padding:.35rem .9rem;border:1px solid var(--border);background:var(--bg-card);border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:500;transition:all .2s}
+    .fc-filter-btn:hover,.fc-filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .fc-counter{font-size:.85rem;color:var(--text-muted);margin-bottom:.8rem}
+    .fc-viewport{perspective:1000px;max-width:560px;margin:0 auto}
+    .fc-card{position:relative;width:100%;min-height:240px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s}
+    .fc-card.flipped{transform:rotateY(180deg)}
+    .fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow)}
+    .fc-front{background:var(--bg-card)}
+    .fc-front .fc-cat{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:.8rem}
+    .fc-front .fc-prompt{font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:500;line-height:1.5}
+    .fc-back{background:var(--accent-light);transform:rotateY(180deg)}
+    .fc-back .fc-answer{font-size:1rem;line-height:1.6}
+    .fc-nav{display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:1.2rem}
+    .fc-nav button{padding:.45rem 1.2rem;border:2px solid var(--border);background:var(--bg-card);border-radius:6px;cursor:pointer;font-weight:600;font-size:.88rem;transition:all .2s}
+    .fc-nav button:hover{border-color:var(--accent);color:var(--accent)}
+    .fc-nav .fc-count{font-size:.9rem;color:var(--text-muted);min-width:5rem;text-align:center}
+
+    /* SHORT ANSWER */
+    .sa-q{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1.2rem;box-shadow:var(--shadow)}
+    .sa-q p{font-weight:600;margin-bottom:.6rem}
+    .sa-q textarea{width:100%;min-height:80px;padding:.7rem;border:1px solid var(--border);border-radius:6px;font-family:'Source Sans 3',sans-serif;font-size:.92rem;resize:vertical;line-height:1.5}
+    .sa-q textarea:focus{outline:none;border-color:var(--accent)}
+    .sa-q .sa-btn{margin-top:.5rem;padding:.45rem 1.1rem;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.88rem;font-weight:600;transition:background .2s}
+    .sa-q .sa-btn:hover{background:var(--accent-dark)}
+    .sa-result{margin-top:.7rem;display:none}
+    .sa-score-bar{height:8px;background:var(--border-light);border-radius:4px;overflow:hidden;margin:.5rem 0}
+    .sa-score-fill{height:100%;border-radius:4px;transition:width .5s}
+    .sa-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin:.5rem 0}
+    .sa-tag{padding:.2rem .6rem;border-radius:4px;font-size:.78rem;font-weight:600}
+    .sa-tag.hit{background:#e8f5e9;color:#2e7d32}
+    .sa-tag.miss{background:#f0f0f0;color:#999}
+    .sa-model{margin-top:.6rem;padding:.8rem;background:var(--accent-light);border-radius:6px;font-size:.9rem;line-height:1.6}
+    .sa-model summary{cursor:pointer;font-weight:600;color:var(--accent-dark);font-size:.88rem}
+
+    /* FOOTER */
+    footer{text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:.82rem}
+
+    /* RESPONSIVE */
+    @media(max-width:700px){
+      .card{padding:1.5rem}
+      .fact-table{font-size:.82rem}
+      .fact-table td:first-child{white-space:normal}
+      .toc-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <h1>Psychology Fundamentals</h1>
+  <div class="subtitle">Essential Study Reference</div>
+  <div class="tagline">The Blocking &amp; Tackling You Must Know</div>
+</header>
+
+<!-- TABLE OF CONTENTS -->
+<nav class="toc container">
+  <h2>Contents</h2>
+  <div class="toc-grid">
+    <a href="#s01"><span class="num">01</span> Biological Bases of Behavior</a>
+    <a href="#s02"><span class="num">02</span> Sensation &amp; Perception</a>
+    <a href="#s03"><span class="num">03</span> Learning &amp; Conditioning</a>
+    <a href="#s04"><span class="num">04</span> Memory</a>
+    <a href="#s05"><span class="num">05</span> Cognition &amp; Language</a>
+    <a href="#s06"><span class="num">06</span> Motivation &amp; Emotion</a>
+    <a href="#s07"><span class="num">07</span> Developmental Psychology</a>
+    <a href="#s08"><span class="num">08</span> Personality</a>
+    <a href="#s09"><span class="num">09</span> Psychological Disorders</a>
+    <a href="#s10"><span class="num">10</span> Social Psychology</a>
+    <a href="#s11"><span class="num">11</span> Research Methods &amp; Statistics</a>
+    <a href="#interactive"><span class="num">&#9998;</span> Quiz, Flashcards &amp; Practice</a>
+  </div>
+</nav>
+
+<main class="container">
+
+<!-- ===== SECTION 01: BIOLOGICAL BASES ===== -->
+<div class="section">
+  <span class="section-anchor" id="s01"></span>
+  <div class="card">
+    <h2><span class="num">01</span> Biological Bases of Behavior</h2>
+    <p>Understanding how the nervous system, brain, and neurotransmitters drive behavior is the foundation of biological psychology. Every thought, emotion, and action traces back to neural activity.</p>
+
+    <h3>The Neuron</h3>
+    <p>Neurons are the basic signaling cells of the nervous system. A typical neuron has dendrites that receive signals, a cell body (soma) containing the nucleus, an axon that transmits the signal, and terminal buttons (synaptic knobs) that release neurotransmitters across the synapse. Many axons are wrapped in a myelin sheath, a fatty insulation produced by Schwann cells (PNS) or oligodendrocytes (CNS), which speeds conduction via saltatory conduction at the Nodes of Ranvier.</p>
+
+    <h3>Action Potential</h3>
+    <p>Neurons fire according to the all-or-none principle. At rest, a neuron sits at approximately -70 mV (resting potential). When stimulation reaches threshold (about -55 mV), voltage-gated sodium channels open and the cell depolarizes rapidly to about +30 mV. Then potassium channels open, causing repolarization. A brief hyperpolarization follows before the neuron returns to resting potential. The refractory period prevents immediate re-firing and ensures signals travel in one direction.</p>
+
+    <div class="formula-box">
+      Resting Potential: ~-70 mV &rarr; Threshold: ~-55 mV &rarr; Depolarization: ~+30 mV &rarr; Repolarization &rarr; Hyperpolarization &rarr; Rest
+    </div>
+
+    <h3>Key Neurotransmitters</h3>
+    <table class="fact-table">
+      <tr><th>Neurotransmitter</th><th>Function</th><th>Too Little</th><th>Too Much</th></tr>
+      <tr><td>Acetylcholine (ACh)</td><td>Muscle contraction, memory, attention</td><td>Alzheimer's disease</td><td>Muscle spasms</td></tr>
+      <tr><td>Dopamine</td><td>Reward, motivation, movement</td><td>Parkinson's disease, depression</td><td>Schizophrenia (positive symptoms)</td></tr>
+      <tr><td>Serotonin</td><td>Mood, sleep, appetite</td><td>Depression, anxiety, OCD</td><td>Serotonin syndrome</td></tr>
+      <tr><td>Norepinephrine</td><td>Arousal, alertness, fight-or-flight</td><td>Depression, fatigue</td><td>Anxiety, hyperarousal</td></tr>
+      <tr><td>GABA</td><td>Main inhibitory NT; calming</td><td>Anxiety, seizures</td><td>Sedation, coma</td></tr>
+      <tr><td>Glutamate</td><td>Main excitatory NT; learning</td><td>Cognitive deficits</td><td>Excitotoxicity, seizures</td></tr>
+      <tr><td>Endorphins</td><td>Pain relief, pleasure</td><td>Chronic pain sensitivity</td><td>Insensitivity to pain</td></tr>
+    </table>
+
+    <div class="mnemonic-box">
+      <div class="label">Mnemonic</div>
+      <strong>Neurotransmitter actions:</strong> "DANG SEE" = Dopamine (reward/movement), ACh (muscle/memory), Norepinephrine (arousal), GABA (inhibition), Serotonin (mood/sleep), Endorphins (pain relief), Glutamate (excitation)
+    </div>
+
+    <h3>The Nervous System</h3>
+    <p>The nervous system divides into the Central Nervous System (CNS = brain + spinal cord) and the Peripheral Nervous System (PNS). The PNS further splits into the somatic nervous system (voluntary muscle control) and the autonomic nervous system (involuntary functions). The autonomic system has two branches: the sympathetic nervous system ("fight or flight," which increases heart rate, dilates pupils, and inhibits digestion) and the parasympathetic nervous system ("rest and digest," which slows heart rate and promotes digestion).</p>
+
+    <h3>Brain Structures</h3>
+    <table class="fact-table">
+      <tr><th>Structure</th><th>Location</th><th>Key Functions</th></tr>
+      <tr><td>Medulla oblongata</td><td>Brainstem</td><td>Heart rate, breathing, blood pressure (vital functions)</td></tr>
+      <tr><td>Pons</td><td>Brainstem</td><td>Sleep, arousal, relays signals to cerebellum</td></tr>
+      <tr><td>Cerebellum</td><td>Hindbrain</td><td>Balance, coordination, motor learning</td></tr>
+      <tr><td>Reticular formation</td><td>Brainstem core</td><td>Arousal, attention, consciousness</td></tr>
+      <tr><td>Thalamus</td><td>Diencephalon</td><td>Sensory relay station (everything except smell)</td></tr>
+      <tr><td>Hypothalamus</td><td>Diencephalon</td><td>Hunger, thirst, temperature, hormones, circadian rhythms</td></tr>
+      <tr><td>Hippocampus</td><td>Limbic system</td><td>Formation of new explicit/declarative memories</td></tr>
+      <tr><td>Amygdala</td><td>Limbic system</td><td>Emotion processing, especially fear and aggression</td></tr>
+      <tr><td>Basal ganglia</td><td>Subcortical</td><td>Voluntary movement, habit formation</td></tr>
+      <tr><td>Broca's area</td><td>Left frontal lobe</td><td>Speech production</td></tr>
+      <tr><td>Wernicke's area</td><td>Left temporal lobe</td><td>Language comprehension</td></tr>
+    </table>
+
+    <h3>Cerebral Cortex Lobes</h3>
+    <table class="fact-table">
+      <tr><th>Lobe</th><th>Primary Function</th><th>Key Details</th></tr>
+      <tr><td>Frontal</td><td>Executive function, planning, personality, motor</td><td>Contains primary motor cortex (precentral gyrus) and prefrontal cortex</td></tr>
+      <tr><td>Parietal</td><td>Somatosensory processing</td><td>Contains primary somatosensory cortex (postcentral gyrus)</td></tr>
+      <tr><td>Temporal</td><td>Auditory processing, language, memory</td><td>Contains auditory cortex and Wernicke's area</td></tr>
+      <tr><td>Occipital</td><td>Visual processing</td><td>Contains primary visual cortex</td></tr>
+    </table>
+
+    <div class="highlight-box">
+      <div class="label">Key Concept</div>
+      <strong>Lateralization:</strong> The left hemisphere generally handles language, logic, and analytical tasks. The right hemisphere specializes in spatial processing, face recognition, and emotional expression. Split-brain studies by Sperry and Gazzaniga demonstrated this after corpus callosum severing.
+    </div>
+
+    <h3>Endocrine System Highlights</h3>
+    <p>The endocrine system uses hormones (chemical messengers in the bloodstream) that work more slowly but have longer-lasting effects than neurotransmitters. The pituitary gland is the "master gland," controlled by the hypothalamus. The adrenal glands produce cortisol (stress hormone) and epinephrine/norepinephrine (adrenaline). The thyroid regulates metabolism. The pineal gland produces melatonin for sleep-wake cycles.</p>
+  </div>
+</div>
+
+<!-- ===== SECTION 02: SENSATION & PERCEPTION ===== -->
+<div class="section">
+  <span class="section-anchor" id="s02"></span>
+  <div class="card">
+    <h2><span class="num">02</span> Sensation &amp; Perception</h2>
+    <p>Sensation is the process of detecting physical energy from the environment and encoding it as neural signals. Perception is the brain's interpretation and organization of those signals into meaningful experience. The two processes are distinct but deeply intertwined.</p>
+
+    <h3>Key Thresholds</h3>
+    <table class="fact-table">
+      <tr><th>Concept</th><th>Definition</th></tr>
+      <tr><td>Absolute threshold</td><td>Minimum stimulus intensity detected 50% of the time</td></tr>
+      <tr><td>Difference threshold (JND)</td><td>Smallest detectable difference between two stimuli</td></tr>
+      <tr><td>Weber's Law</td><td>JND is a constant proportion of the original stimulus (&#916;I/I = k)</td></tr>
+      <tr><td>Signal detection theory</td><td>Detection depends on signal strength AND decision criteria (hits, misses, false alarms, correct rejections)</td></tr>
+      <tr><td>Sensory adaptation</td><td>Decreased sensitivity after prolonged, constant stimulation</td></tr>
+    </table>
+
+    <h3>Vision</h3>
+    <p>Light enters the eye through the cornea, passes through the pupil (controlled by the iris), and is focused by the lens onto the retina. The retina contains photoreceptors: rods (peripheral vision, dim light, black-and-white) and cones (central vision, color, detail, concentrated in the fovea). Visual information travels via the optic nerve, crosses at the optic chiasm, passes through the lateral geniculate nucleus (LGN) of the thalamus, and reaches the primary visual cortex in the occipital lobe.</p>
+
+    <div class="formula-box">
+      Pathway: Cornea &rarr; Pupil &rarr; Lens &rarr; Retina (rods/cones) &rarr; Bipolar cells &rarr; Ganglion cells &rarr; Optic nerve &rarr; Optic chiasm &rarr; LGN (thalamus) &rarr; Visual cortex
+    </div>
+
+    <p>Color vision theories: the trichromatic theory (Young-Helmholtz) says three types of cones (red, green, blue) combine to produce all colors. The opponent-process theory (Hering) says color is processed in opposing pairs (red-green, blue-yellow, black-white). Both theories are correct at different stages of processing.</p>
+
+    <h3>Hearing</h3>
+    <p>Sound waves enter the ear canal, vibrate the tympanic membrane (eardrum), which transmits vibrations through the ossicles (hammer, anvil, stirrup) to the oval window. This creates waves in the cochlear fluid that bend hair cells on the basilar membrane, converting mechanical energy to neural signals. These travel via the auditory nerve to the auditory cortex in the temporal lobe.</p>
+
+    <p>Place theory explains perception of high-frequency sounds (different locations on the basilar membrane). Frequency theory explains low-frequency sounds (neurons fire at the same rate as the sound wave). The volley principle extends frequency theory to moderate frequencies.</p>
+
+    <h3>Gestalt Principles of Perception</h3>
+    <table class="fact-table">
+      <tr><th>Principle</th><th>Description</th></tr>
+      <tr><td>Figure-ground</td><td>We organize stimuli into a foreground figure and background</td></tr>
+      <tr><td>Proximity</td><td>Objects near each other are grouped together</td></tr>
+      <tr><td>Similarity</td><td>Similar objects are grouped together</td></tr>
+      <tr><td>Closure</td><td>We fill in gaps to perceive complete forms</td></tr>
+      <tr><td>Continuity</td><td>We prefer smooth, continuous patterns over abrupt changes</td></tr>
+      <tr><td>Common fate</td><td>Objects moving together are perceived as a group</td></tr>
+    </table>
+
+    <h3>Depth Perception</h3>
+    <p>Monocular cues (one eye): relative size, interposition/overlap, linear perspective, texture gradient, aerial perspective, and motion parallax. Binocular cues (two eyes): retinal disparity (each eye gets a slightly different image) and convergence (eyes turn inward for near objects).</p>
+
+    <div class="highlight-box">
+      <div class="label">Key Concept</div>
+      <strong>Top-down vs. Bottom-up processing:</strong> Bottom-up processing builds perception from raw sensory data (data-driven). Top-down processing uses expectations, knowledge, and context to interpret stimuli (conceptually-driven). Most perception involves both simultaneously.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 03: LEARNING & CONDITIONING ===== -->
+<div class="section">
+  <span class="section-anchor" id="s03"></span>
+  <div class="card">
+    <h2><span class="num">03</span> Learning &amp; Conditioning</h2>
+    <p>Learning is a relatively permanent change in behavior due to experience. The three major types are classical conditioning, operant conditioning, and observational learning.</p>
+
+    <h3>Classical Conditioning (Pavlov)</h3>
+    <p>An organism learns to associate two stimuli so that one comes to elicit a response originally caused only by the other. Before conditioning, the unconditioned stimulus (US) naturally produces the unconditioned response (UR). A neutral stimulus (NS) produces no relevant response. After repeated pairing of the NS with the US, the NS becomes a conditioned stimulus (CS) that produces a conditioned response (CR).</p>
+
+    <div class="formula-box">
+      Before: US (food) &rarr; UR (salivation) | NS (bell) &rarr; no response<br>
+      During: NS (bell) + US (food) &rarr; UR (salivation)<br>
+      After:  CS (bell) &rarr; CR (salivation)
+    </div>
+
+    <table class="fact-table">
+      <tr><th>Term</th><th>Definition</th></tr>
+      <tr><td>Acquisition</td><td>Initial learning of the CS-US association</td></tr>
+      <tr><td>Extinction</td><td>CR weakens when CS is presented without US</td></tr>
+      <tr><td>Spontaneous recovery</td><td>Reappearance of extinguished CR after a rest period</td></tr>
+      <tr><td>Generalization</td><td>CR occurs to stimuli similar to the CS</td></tr>
+      <tr><td>Discrimination</td><td>Organism responds to CS but not to similar stimuli</td></tr>
+      <tr><td>Higher-order conditioning</td><td>A new NS is paired with an established CS</td></tr>
+    </table>
+
+    <h3>Operant Conditioning (Skinner)</h3>
+    <p>Behavior is shaped by its consequences. Reinforcement increases the likelihood of a behavior; punishment decreases it. "Positive" means adding a stimulus; "negative" means removing one.</p>
+
+    <table class="fact-table">
+      <tr><th>Type</th><th>Action</th><th>Effect on Behavior</th><th>Example</th></tr>
+      <tr><td>Positive reinforcement</td><td>Add pleasant stimulus</td><td>Increases</td><td>Giving a treat for good grades</td></tr>
+      <tr><td>Negative reinforcement</td><td>Remove aversive stimulus</td><td>Increases</td><td>Seatbelt buzzer stops when buckled</td></tr>
+      <tr><td>Positive punishment</td><td>Add aversive stimulus</td><td>Decreases</td><td>Spanking after misbehavior</td></tr>
+      <tr><td>Negative punishment</td><td>Remove pleasant stimulus</td><td>Decreases</td><td>Taking away phone privileges</td></tr>
+    </table>
+
+    <div class="mnemonic-box">
+      <div class="label">Mnemonic</div>
+      Think of "positive" as <strong>adding (+)</strong> and "negative" as <strong>subtracting (-)</strong>. "Reinforcement" always <strong>strengthens</strong> behavior. "Punishment" always <strong>weakens</strong> behavior.
+    </div>
+
+    <h3>Schedules of Reinforcement</h3>
+    <table class="fact-table">
+      <tr><th>Schedule</th><th>Rule</th><th>Response Rate</th><th>Resistance to Extinction</th></tr>
+      <tr><td>Continuous</td><td>Reinforce every response</td><td>Moderate</td><td>Low (extinguishes fast)</td></tr>
+      <tr><td>Fixed-ratio (FR)</td><td>After set number of responses</td><td>High with post-reinforcement pause</td><td>Moderate</td></tr>
+      <tr><td>Variable-ratio (VR)</td><td>After unpredictable number</td><td>Highest, steady</td><td>Highest (slot machines)</td></tr>
+      <tr><td>Fixed-interval (FI)</td><td>After set time period</td><td>Scalloped pattern (increases near end)</td><td>Moderate</td></tr>
+      <tr><td>Variable-interval (VI)</td><td>After unpredictable time</td><td>Slow, steady</td><td>High</td></tr>
+    </table>
+
+    <h3>Observational Learning (Bandura)</h3>
+    <p>Learning by watching others (models). Bandura's Bobo doll experiment showed children imitate aggressive behavior they observe. Four steps: attention (notice the model), retention (remember what was observed), reproduction (ability to replicate), and motivation (reason to perform). This introduced the concept of vicarious reinforcement, where seeing a model rewarded increases imitation.</p>
+
+    <div class="highlight-box">
+      <div class="label">Key Concept</div>
+      <strong>Learned helplessness (Seligman):</strong> When organisms learn that they cannot control outcomes, they stop trying even when escape becomes possible. This has been linked to depression and passivity.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 04: MEMORY ===== -->
+<div class="section">
+  <span class="section-anchor" id="s04"></span>
+  <div class="card">
+    <h2><span class="num">04</span> Memory</h2>
+    <p>Memory is the persistence of learning over time through encoding, storage, and retrieval. Models of memory explain how information moves from fleeting sensory input to lasting knowledge.</p>
+
+    <h3>Atkinson-Shiffrin Model (Multi-Store)</h3>
+    <div class="formula-box">
+      Sensory Memory &rarr; (attention) &rarr; Short-Term Memory &rarr; (encoding/rehearsal) &rarr; Long-Term Memory
+    </div>
+
+    <table class="fact-table">
+      <tr><th>Store</th><th>Capacity</th><th>Duration</th><th>Key Facts</th></tr>
+      <tr><td>Sensory memory</td><td>Large (all input)</td><td>Iconic: ~0.5 sec; Echoic: ~3-4 sec</td><td>Brief buffer; iconic = visual, echoic = auditory</td></tr>
+      <tr><td>Short-term / Working memory</td><td>7 &plusmn; 2 items (Miller)</td><td>~20-30 seconds without rehearsal</td><td>Chunking increases effective capacity</td></tr>
+      <tr><td>Long-term memory</td><td>Essentially unlimited</td><td>Potentially permanent</td><td>Requires elaborative rehearsal for best encoding</td></tr>
+    </table>
+
+    <h3>Types of Long-Term Memory</h3>
+    <p>Explicit (declarative) memory involves conscious recall and divides into episodic memory (personal events and experiences) and semantic memory (general knowledge and facts). Implicit (nondeclarative) memory operates without conscious awareness and includes procedural memory (motor skills and habits), classical conditioning effects, and priming.</p>
+
+    <div class="mnemonic-box">
+      <div class="label">Mnemonic</div>
+      <strong>Explicit = "Expressed" consciously:</strong> Episodic (events) + Semantic (stuff you know). <strong>Implicit = "Implied" automatically:</strong> Procedural (skills) + Priming + Conditioning.
+    </div>
+
+    <h3>Encoding Strategies</h3>
+    <table class="fact-table">
+      <tr><th>Strategy</th><th>Description</th></tr>
+      <tr><td>Elaborative rehearsal</td><td>Connecting new info to existing knowledge (deep processing)</td></tr>
+      <tr><td>Levels of processing (Craik &amp; Lockhart)</td><td>Deeper semantic processing = better memory than shallow structural/phonemic</td></tr>
+      <tr><td>Self-reference effect</td><td>Information related to oneself is better remembered</td></tr>
+      <tr><td>Spacing effect</td><td>Distributed practice beats massed practice (cramming)</td></tr>
+      <tr><td>Chunking</td><td>Grouping items into meaningful units</td></tr>
+      <tr><td>Mnemonic devices</td><td>Memory aids like acronyms, method of loci, peg-word system</td></tr>
+    </table>
+
+    <h3>Forgetting</h3>
+    <table class="fact-table">
+      <tr><th>Type</th><th>Explanation</th></tr>
+      <tr><td>Encoding failure</td><td>Information was never properly encoded</td></tr>
+      <tr><td>Storage decay</td><td>Memory trace fades over time (Ebbinghaus forgetting curve)</td></tr>
+      <tr><td>Retrieval failure</td><td>Information exists but cannot be accessed (tip-of-the-tongue)</td></tr>
+      <tr><td>Proactive interference</td><td>Old memories interfere with new learning</td></tr>
+      <tr><td>Retroactive interference</td><td>New learning interferes with old memories</td></tr>
+      <tr><td>Motivated forgetting</td><td>Repression of painful memories (Freud)</td></tr>
+    </table>
+
+    <div class="highlight-box">
+      <div class="label">Key Concept</div>
+      <strong>Context-dependent memory:</strong> Recall is better when the retrieval environment matches the encoding environment. <strong>State-dependent memory:</strong> Recall is better when internal state (mood, substance) at retrieval matches encoding. <strong>Mood-congruent memory:</strong> We more easily recall memories consistent with our current mood.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 05: COGNITION & LANGUAGE ===== -->
+<div class="section">
+  <span class="section-anchor" id="s05"></span>
+  <div class="card">
+    <h2><span class="num">05</span> Cognition &amp; Language</h2>
+    <p>Cognition encompasses all mental activities associated with thinking, knowing, remembering, and communicating. Language is the primary tool through which cognition is expressed and shaped.</p>
+
+    <h3>Problem Solving</h3>
+    <table class="fact-table">
+      <tr><th>Concept</th><th>Definition</th></tr>
+      <tr><td>Algorithm</td><td>Step-by-step procedure that guarantees a solution (slow but reliable)</td></tr>
+      <tr><td>Heuristic</td><td>Mental shortcut; faster but error-prone</td></tr>
+      <tr><td>Insight</td><td>Sudden "aha!" realization of a solution</td></tr>
+      <tr><td>Fixation</td><td>Inability to see a problem from a new angle</td></tr>
+      <tr><td>Mental set</td><td>Tendency to use only solutions that worked before</td></tr>
+      <tr><td>Functional fixedness</td><td>Thinking of objects only in terms of their usual function</td></tr>
+    </table>
+
+    <h3>Judgment &amp; Decision Making Biases</h3>
+    <table class="fact-table">
+      <tr><th>Bias / Heuristic</th><th>Description</th></tr>
+      <tr><td>Availability heuristic</td><td>Judging likelihood by how easily examples come to mind</td></tr>
+      <tr><td>Representativeness heuristic</td><td>Judging likelihood by how well something matches a prototype</td></tr>
+      <tr><td>Anchoring bias</td><td>Over-relying on the first piece of information encountered</td></tr>
+      <tr><td>Confirmation bias</td><td>Searching for information that confirms existing beliefs</td></tr>
+      <tr><td>Overconfidence</td><td>Overestimating the accuracy of our beliefs and judgments</td></tr>
+      <tr><td>Framing effect</td><td>Decisions influenced by how information is presented</td></tr>
+      <tr><td>Belief perseverance</td><td>Clinging to beliefs even when evidence contradicts them</td></tr>
+      <tr><td>Hindsight bias</td><td>"I knew it all along" after learning an outcome</td></tr>
+    </table>
+
+    <h3>Language</h3>
+    <p>Language has structure at multiple levels: phonemes (smallest sound units), morphemes (smallest meaningful units), syntax (grammatical rules), and semantics (meaning). Noam Chomsky proposed the language acquisition device (LAD), an innate biological capacity for language, and distinguished between surface structure (how a sentence is worded) and deep structure (its underlying meaning). The critical period for language acquisition is roughly before puberty.</p>
+
+    <div class="highlight-box">
+      <div class="label">Key Concept</div>
+      <strong>Linguistic relativity hypothesis (Sapir-Whorf):</strong> Language influences thought. The strong version claims language determines thought (largely rejected). The weak version claims language influences perception and categorization of experience (widely accepted).
+    </div>
+
+    <h3>Intelligence</h3>
+    <p>Spearman proposed general intelligence (g factor). Gardner proposed multiple intelligences (linguistic, logical-mathematical, spatial, musical, bodily-kinesthetic, interpersonal, intrapersonal, naturalistic). Sternberg's triarchic theory includes analytical, creative, and practical intelligence. Emotional intelligence (Salovey and Mayer, popularized by Goleman) involves perceiving, understanding, managing, and using emotions.</p>
+
+    <p>IQ tests: the Stanford-Binet and Wechsler scales are most common. A reliable test gives consistent scores; a valid test measures what it claims to measure. IQ scores follow a normal distribution with mean 100 and standard deviation 15.</p>
+  </div>
+</div>
+
+<!-- ===== SECTION 06: MOTIVATION & EMOTION ===== -->
+<div class="section">
+  <span class="section-anchor" id="s06"></span>
+  <div class="card">
+    <h2><span class="num">06</span> Motivation &amp; Emotion</h2>
+
+    <h3>Theories of Motivation</h3>
+    <table class="fact-table">
+      <tr><th>Theory</th><th>Core Idea</th></tr>
+      <tr><td>Instinct theory</td><td>Behavior driven by innate, fixed patterns (largely replaced)</td></tr>
+      <tr><td>Drive-reduction theory (Hull)</td><td>Physiological needs create drives; behavior reduces the drive to restore homeostasis</td></tr>
+      <tr><td>Arousal theory</td><td>We seek an optimal level of arousal (Yerkes-Dodson law: moderate arousal = best performance)</td></tr>
+      <tr><td>Incentive theory</td><td>External stimuli (incentives) pull us toward behavior</td></tr>
+      <tr><td>Self-determination theory (Deci &amp; Ryan)</td><td>Three innate needs: autonomy, competence, relatedness</td></tr>
+    </table>
+
+    <h3>Maslow's Hierarchy of Needs</h3>
+    <div class="formula-box">
+      Bottom to top: Physiological &rarr; Safety &rarr; Love/Belonging &rarr; Esteem &rarr; Self-actualization
+    </div>
+    <p>Lower needs must generally be met before higher needs become motivating. Self-actualization is the desire to fulfill one's potential. Maslow later added self-transcendence above self-actualization.</p>
+
+    <div class="mnemonic-box">
+      <div class="label">Mnemonic</div>
+      <strong>"Please Stop Loving Expensive Shoes"</strong> = Physiological, Safety, Love/Belonging, Esteem, Self-actualization
+    </div>
+
+    <h3>Theories of Emotion</h3>
+    <table class="fact-table">
+      <tr><th>Theory</th><th>Sequence</th><th>Key Idea</th></tr>
+      <tr><td>James-Lange</td><td>Event &rarr; Physiological arousal &rarr; Emotion</td><td>We feel emotions BECAUSE of body changes</td></tr>
+      <tr><td>Cannon-Bard</td><td>Event &rarr; Arousal AND emotion simultaneously</td><td>Body response and emotion happen at the same time</td></tr>
+      <tr><td>Schachter-Singer (Two-Factor)</td><td>Event &rarr; Arousal + Cognitive label &rarr; Emotion</td><td>We interpret arousal based on context</td></tr>
+      <tr><td>Lazarus (Cognitive Appraisal)</td><td>Event &rarr; Appraisal &rarr; Emotion + Arousal</td><td>Thought/appraisal MUST come before emotion</td></tr>
+      <tr><td>Facial feedback hypothesis</td><td>Facial expressions influence emotional experience</td><td>Smiling can actually make you feel happier</td></tr>
+    </table>
+
+    <div class="highlight-box">
+      <div class="label">Key Concept</div>
+      <strong>Yerkes-Dodson Law:</strong> Performance increases with arousal up to a point, then declines. Simple tasks benefit from higher arousal; complex tasks perform best at moderate arousal levels.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 07: DEVELOPMENTAL PSYCHOLOGY ===== -->
+<div class="section">
+  <span class="section-anchor" id="s07"></span>
+  <div class="card">
+    <h2><span class="num">07</span> Developmental Psychology</h2>
+    <p>Developmental psychology studies physical, cognitive, and social changes across the lifespan. Several stage theories form the backbone of this area.</p>
+
+    <h3>Piaget's Stages of Cognitive Development</h3>
+    <table class="fact-table">
+      <tr><th>Stage</th><th>Ages</th><th>Key Features</th></tr>
+      <tr><td>Sensorimotor</td><td>0-2 years</td><td>Object permanence, sensory exploration, stranger anxiety</td></tr>
+      <tr><td>Preoperational</td><td>2-7 years</td><td>Symbolic thinking, egocentrism, centration, animism, lack of conservation</td></tr>
+      <tr><td>Concrete operational</td><td>7-11 years</td><td>Conservation, logical thought about concrete events, reversibility, classification</td></tr>
+      <tr><td>Formal operational</td><td>12+ years</td><td>Abstract reasoning, hypothetical thinking, systematic problem solving</td></tr>
+    </table>
+
+    <div class="mnemonic-box">
+      <div class="label">Mnemonic</div>
+      <strong>"Some People Can't Fly"</strong> = Sensorimotor, Preoperational, Concrete operational, Formal operational
+    </div>
+
+    <h3>Erikson's Psychosocial Stages</h3>
+    <table class="fact-table">
+      <tr><th>Stage</th><th>Age</th><th>Crisis</th><th>Virtue</th></tr>
+      <tr><td>Infancy</td><td>0-1</td><td>Trust vs. Mistrust</td><td>Hope</td></tr>
+      <tr><td>Toddlerhood</td><td>1-3</td><td>Autonomy vs. Shame/Doubt</td><td>Will</td></tr>
+      <tr><td>Preschool</td><td>3-6</td><td>Initiative vs. Guilt</td><td>Purpose</td></tr>
+      <tr><td>School age</td><td>6-12</td><td>Industry vs. Inferiority</td><td>Competence</td></tr>
+      <tr><td>Adolescence</td><td>12-18</td><td>Identity vs. Role confusion</td><td>Fidelity</td></tr>
+      <tr><td>Young adulthood</td><td>18-40</td><td>Intimacy vs. Isolation</td><td>Love</td></tr>
+      <tr><td>Middle adulthood</td><td>40-65</td><td>Generativity vs. Stagnation</td><td>Care</td></tr>
+      <tr><td>Late adulthood</td><td>65+</td><td>Integrity vs. Despair</td><td>Wisdom</td></tr>
+    </table>
+
+    <h3>Kohlberg's Moral Development</h3>
+    <table class="fact-table">
+      <tr><th>Level</th><th>Stage</th><th>Reasoning Basis</th></tr>
+      <tr><td>Preconventional</td><td>1. Obedience/Punishment</td><td>"Will I get in trouble?"</td></tr>
+      <tr><td></td><td>2. Self-interest/Exchange</td><td>"What's in it for me?"</td></tr>
+      <tr><td>Conventional</td><td>3. Good boy/girl</td><td>"Will people approve of me?"</td></tr>
+      <tr><td></td><td>4. Law and order</td><td>"What do the rules say?"</td></tr>
+      <tr><td>Postconventional</td><td>5. Social contract</td><td>"What serves the greater good?"</td></tr>
+      <tr><td></td><td>6. Universal principles</td><td>"What is ethically right?"</td></tr>
+    </table>
+
+    <h3>Attachment (Ainsworth)</h3>
+    <p>Using the Strange Situation experiment, Ainsworth identified attachment styles. Secure attachment (about 60%) involves a child who explores freely with the caregiver present, shows distress at separation, and is comforted upon return. Insecure-avoidant children show little distress and avoid the caregiver. Insecure-anxious/ambivalent children are clingy, very distressed at separation, and not easily comforted. Disorganized attachment shows inconsistent, confused behavior. Harlow's monkey studies demonstrated that contact comfort (soft cloth mother) was preferred over nourishment (wire mother with food), showing attachment is more than feeding.</p>
+
+    <div class="highlight-box">
+      <div class="label">Key Concept</div>
+      <strong>Vygotsky's Zone of Proximal Development (ZPD):</strong> The gap between what a learner can do alone and what they can do with guidance. Scaffolding provides support that is gradually removed as the learner becomes competent.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 08: PERSONALITY ===== -->
+<div class="section">
+  <span class="section-anchor" id="s08"></span>
+  <div class="card">
+    <h2><span class="num">08</span> Personality</h2>
+    <p>Personality is the characteristic pattern of thinking, feeling, and behaving that makes each person unique. Major perspectives offer different explanations for how personality develops and functions.</p>
+
+    <h3>Psychoanalytic/Psychodynamic (Freud)</h3>
+    <p>Freud proposed three structures of personality: the id (pleasure principle; unconscious, impulsive desires), the ego (reality principle; mediates between id and superego), and the superego (morality principle; internalized societal standards and conscience). Personality develops through psychosexual stages: oral (0-1), anal (1-3), phallic (3-6, includes the Oedipus/Electra complex), latency (6-puberty), and genital (puberty onward). Fixation at any stage can affect adult personality.</p>
+
+    <h3>Defense Mechanisms</h3>
+    <table class="fact-table">
+      <tr><th>Mechanism</th><th>Description</th><th>Example</th></tr>
+      <tr><td>Repression</td><td>Pushing threatening thoughts into the unconscious</td><td>Forgetting a traumatic event</td></tr>
+      <tr><td>Denial</td><td>Refusing to accept reality</td><td>Alcoholic insists they don't have a problem</td></tr>
+      <tr><td>Projection</td><td>Attributing own unacceptable feelings to others</td><td>Unfaithful spouse accuses partner of cheating</td></tr>
+      <tr><td>Displacement</td><td>Redirecting emotions to a safer target</td><td>Yelling at family after bad day at work</td></tr>
+      <tr><td>Sublimation</td><td>Channeling unacceptable urges into socially acceptable behavior</td><td>Aggressive person becomes a surgeon</td></tr>
+      <tr><td>Rationalization</td><td>Creating logical justifications for irrational behavior</td><td>"I didn't want that job anyway"</td></tr>
+      <tr><td>Regression</td><td>Reverting to earlier developmental behavior</td><td>Adult throwing a tantrum</td></tr>
+      <tr><td>Reaction formation</td><td>Behaving opposite to true feelings</td><td>Being overly nice to someone you dislike</td></tr>
+    </table>
+
+    <h3>Humanistic Perspective</h3>
+    <p>Carl Rogers emphasized unconditional positive regard, the need for congruence between the real self and ideal self, and a person-centered approach. Maslow's hierarchy of needs culminates in self-actualization. This perspective focuses on free will, personal growth, and subjective experience.</p>
+
+    <h3>Trait Perspective</h3>
+    <p>The Big Five (OCEAN) model is the most widely accepted trait framework. Traits are relatively stable dispositions that describe how people typically think, feel, and behave.</p>
+
+    <div class="mnemonic-box">
+      <div class="label">Mnemonic</div>
+      <strong>OCEAN:</strong> Openness (curiosity, creativity), Conscientiousness (organization, dependability), Extraversion (sociability, energy), Agreeableness (cooperation, trust), Neuroticism (emotional instability, anxiety)
+    </div>
+
+    <h3>Social-Cognitive Perspective (Bandura)</h3>
+    <p>Reciprocal determinism describes the interaction among behavior, personal factors (thoughts, feelings), and environmental factors. Self-efficacy is one's belief in their ability to succeed at a task, and it strongly predicts behavior and outcomes. An internal locus of control (belief that you control your fate) is associated with greater achievement and well-being than an external locus of control (belief that outside forces control your fate).</p>
+  </div>
+</div>
+
+<!-- ===== SECTION 09: PSYCHOLOGICAL DISORDERS ===== -->
+<div class="section">
+  <span class="section-anchor" id="s09"></span>
+  <div class="card">
+    <h2><span class="num">09</span> Psychological Disorders</h2>
+    <p>Psychological disorders are patterns of thoughts, feelings, or behaviors that are deviant, distressful, and dysfunctional. The DSM-5 is the standard classification system. The biopsychosocial model recognizes that disorders arise from a combination of biological, psychological, and social factors.</p>
+
+    <h3>Major Disorder Categories</h3>
+    <table class="fact-table">
+      <tr><th>Disorder</th><th>Key Features</th><th>Notable Details</th></tr>
+      <tr><td>Generalized Anxiety Disorder</td><td>Persistent, excessive worry about many things</td><td>At least 6 months; muscle tension, restlessness, fatigue</td></tr>
+      <tr><td>Panic Disorder</td><td>Recurrent, unexpected panic attacks</td><td>Intense fear with physical symptoms (heart racing, shortness of breath)</td></tr>
+      <tr><td>Phobias</td><td>Intense, irrational fear of specific object/situation</td><td>Social phobia (social anxiety), agoraphobia, specific phobias</td></tr>
+      <tr><td>OCD</td><td>Obsessions (unwanted thoughts) + compulsions (repetitive behaviors)</td><td>Behaviors performed to reduce anxiety from obsessions</td></tr>
+      <tr><td>PTSD</td><td>Flashbacks, nightmares, avoidance after trauma</td><td>Hyperarousal, emotional numbing, at least 1 month duration</td></tr>
+      <tr><td>Major Depressive Disorder</td><td>Persistent depressed mood, loss of interest/pleasure</td><td>At least 2 weeks; changes in sleep, appetite, energy, concentration</td></tr>
+      <tr><td>Bipolar Disorder</td><td>Alternating episodes of mania and depression</td><td>Mania: inflated self-esteem, decreased need for sleep, rapid speech</td></tr>
+      <tr><td>Schizophrenia</td><td>Psychotic disorder with disordered thinking</td><td>Positive symptoms (hallucinations, delusions) and negative symptoms (flat affect, social withdrawal)</td></tr>
+      <tr><td>Dissociative Identity Disorder</td><td>Two or more distinct personality states</td><td>Formerly "multiple personality disorder"; linked to severe childhood trauma</td></tr>
+      <tr><td>Antisocial Personality Disorder</td><td>Disregard for and violation of others' rights</td><td>Lack of empathy, deceitfulness, impulsivity; begins before age 15</td></tr>
+      <tr><td>Borderline Personality Disorder</td><td>Instability in relationships, self-image, emotions</td><td>Fear of abandonment, impulsivity, self-harm</td></tr>
+    </table>
+
+    <div class="highlight-box">
+      <div class="label">Key Concept</div>
+      <strong>Schizophrenia neurotransmitter hypothesis:</strong> The dopamine hypothesis suggests that overactivity of dopamine is associated with positive symptoms. Newer research also implicates glutamate dysfunction. Structural changes include enlarged ventricles and reduced cortical volume.
+    </div>
+
+    <h3>Therapy Approaches</h3>
+    <table class="fact-table">
+      <tr><th>Approach</th><th>Method</th><th>Key Techniques</th></tr>
+      <tr><td>Psychoanalytic</td><td>Explore unconscious conflicts</td><td>Free association, dream analysis, transference</td></tr>
+      <tr><td>Humanistic (Rogers)</td><td>Client-centered, supportive environment</td><td>Active listening, unconditional positive regard, empathy</td></tr>
+      <tr><td>Behavioral</td><td>Change maladaptive behaviors</td><td>Systematic desensitization, aversion therapy, token economy</td></tr>
+      <tr><td>Cognitive (Beck)</td><td>Change distorted thinking patterns</td><td>Identify cognitive distortions, cognitive restructuring</td></tr>
+      <tr><td>CBT</td><td>Combines cognitive + behavioral</td><td>Most empirically supported; thought records, exposure, behavioral activation</td></tr>
+      <tr><td>Biomedical</td><td>Alter brain chemistry/function</td><td>SSRIs, antipsychotics, mood stabilizers, ECT</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== SECTION 10: SOCIAL PSYCHOLOGY ===== -->
+<div class="section">
+  <span class="section-anchor" id="s10"></span>
+  <div class="card">
+    <h2><span class="num">10</span> Social Psychology</h2>
+    <p>Social psychology studies how individuals' thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others.</p>
+
+    <h3>Attribution Theory</h3>
+    <p>We explain others' behavior using dispositional attributions (internal traits) or situational attributions (external circumstances). The fundamental attribution error (FAE) is our tendency to overattribute others' behavior to disposition while underestimating situational factors. The self-serving bias leads us to attribute our successes to internal factors and failures to external factors.</p>
+
+    <h3>Attitudes &amp; Persuasion</h3>
+    <p>Cognitive dissonance (Festinger) occurs when our behavior conflicts with our attitudes, creating psychological discomfort that motivates attitude change. The foot-in-the-door technique (small request first, then larger) and door-in-the-face technique (large request first, then smaller) exploit this. The elaboration likelihood model distinguishes central route (careful analysis of arguments) from peripheral route (superficial cues like attractiveness).</p>
+
+    <h3>Conformity, Obedience &amp; Group Behavior</h3>
+    <table class="fact-table">
+      <tr><th>Concept</th><th>Researcher</th><th>Key Finding</th></tr>
+      <tr><td>Conformity</td><td>Asch</td><td>People conform to group answers on line-judgment tasks even when obviously wrong (~37% conformed)</td></tr>
+      <tr><td>Obedience</td><td>Milgram</td><td>~65% administered maximum "shocks" when instructed by authority figure</td></tr>
+      <tr><td>Stanford Prison Experiment</td><td>Zimbardo</td><td>Normal people adopted cruel guard roles; demonstrates power of situational forces</td></tr>
+      <tr><td>Social facilitation</td><td>Zajonc</td><td>Presence of others improves simple tasks, impairs complex tasks</td></tr>
+      <tr><td>Social loafing</td><td>Latane</td><td>Individuals exert less effort in groups</td></tr>
+      <tr><td>Groupthink</td><td>Janis</td><td>Desire for harmony overrides realistic appraisal of alternatives</td></tr>
+      <tr><td>Group polarization</td><td>&mdash;</td><td>Group discussion strengthens members' prevailing attitudes</td></tr>
+      <tr><td>Deindividuation</td><td>&mdash;</td><td>Loss of self-awareness and restraint in groups</td></tr>
+    </table>
+
+    <h3>Prosocial Behavior &amp; Aggression</h3>
+    <p>The bystander effect (Darley &amp; Latane) shows that the more bystanders present, the less likely any one person is to help, due to diffusion of responsibility and pluralistic ignorance. Altruism is selfless helping behavior. The frustration-aggression hypothesis states that frustration increases the likelihood of aggression.</p>
+
+    <h3>Prejudice &amp; Discrimination</h3>
+    <p>Prejudice is an unjustifiable negative attitude toward a group. Discrimination is unjustifiable negative action toward a group. Stereotypes are generalized beliefs about a group. In-group bias favors one's own group. The just-world hypothesis leads people to believe others get what they deserve. Stereotype threat (Steele) occurs when awareness of a negative stereotype about one's group impairs performance.</p>
+
+    <div class="highlight-box">
+      <div class="label">Key Concept</div>
+      <strong>Contact hypothesis (Allport):</strong> Prejudice can be reduced when groups interact under conditions of equal status, common goals, intergroup cooperation, and support from authorities.
+    </div>
+  </div>
+</div>
+
+<!-- ===== SECTION 11: RESEARCH METHODS & STATISTICS ===== -->
+<div class="section">
+  <span class="section-anchor" id="s11"></span>
+  <div class="card">
+    <h2><span class="num">11</span> Research Methods &amp; Statistics</h2>
+    <p>Understanding research design and statistics is essential for evaluating psychological claims and is heavily tested. You need to distinguish correlation from causation and understand how experiments are designed to control for confounds.</p>
+
+    <h3>Research Methods</h3>
+    <table class="fact-table">
+      <tr><th>Method</th><th>Description</th><th>Strength</th><th>Limitation</th></tr>
+      <tr><td>Experiment</td><td>Manipulate IV, measure DV, control confounds</td><td>Can establish causation</td><td>Artificial setting; ethical limits</td></tr>
+      <tr><td>Correlational study</td><td>Measure relationship between variables</td><td>Can study naturally occurring variables</td><td>Cannot establish causation</td></tr>
+      <tr><td>Survey</td><td>Self-report questionnaires/interviews</td><td>Efficient for large samples</td><td>Response bias, social desirability</td></tr>
+      <tr><td>Naturalistic observation</td><td>Observe behavior in natural setting</td><td>High ecological validity</td><td>No control over variables</td></tr>
+      <tr><td>Case study</td><td>In-depth study of one individual</td><td>Rich detail</td><td>Cannot generalize</td></tr>
+      <tr><td>Longitudinal</td><td>Same group studied over time</td><td>Tracks change over time</td><td>Expensive; subject attrition</td></tr>
+      <tr><td>Cross-sectional</td><td>Different age groups at one time point</td><td>Quick, inexpensive</td><td>Cohort effects</td></tr>
+    </table>
+
+    <h3>Experimental Design Essentials</h3>
+    <table class="fact-table">
+      <tr><th>Term</th><th>Definition</th></tr>
+      <tr><td>Independent variable (IV)</td><td>The variable manipulated by the researcher</td></tr>
+      <tr><td>Dependent variable (DV)</td><td>The variable measured as the outcome</td></tr>
+      <tr><td>Confounding variable</td><td>An uncontrolled variable that may influence the DV</td></tr>
+      <tr><td>Control group</td><td>Group not exposed to the treatment; serves as baseline</td></tr>
+      <tr><td>Experimental group</td><td>Group exposed to the IV/treatment</td></tr>
+      <tr><td>Random assignment</td><td>Each participant has equal chance of being in any group (controls confounds)</td></tr>
+      <tr><td>Random sampling</td><td>Each member of population has equal chance of selection (improves generalizability)</td></tr>
+      <tr><td>Single-blind</td><td>Participants don't know their group</td></tr>
+      <tr><td>Double-blind</td><td>Neither participants nor researchers know group assignments</td></tr>
+      <tr><td>Placebo effect</td><td>Improvement due to expectation of treatment</td></tr>
+    </table>
+
+    <div class="mnemonic-box">
+      <div class="label">Mnemonic</div>
+      <strong>Random assignment vs. random sampling:</strong> Random <em>assignment</em> controls for confounds (internal validity). Random <em>sampling</em> allows generalization (external validity). They serve different purposes.
+    </div>
+
+    <h3>Basic Statistics</h3>
+    <table class="fact-table">
+      <tr><th>Concept</th><th>Definition</th></tr>
+      <tr><td>Mean</td><td>Arithmetic average</td></tr>
+      <tr><td>Median</td><td>Middle score when ordered (resistant to outliers)</td></tr>
+      <tr><td>Mode</td><td>Most frequent score</td></tr>
+      <tr><td>Range</td><td>Highest minus lowest score</td></tr>
+      <tr><td>Standard deviation</td><td>Average distance of scores from the mean</td></tr>
+      <tr><td>Normal distribution</td><td>Symmetrical, bell-shaped curve; 68-95-99.7 rule</td></tr>
+      <tr><td>Skew</td><td>Positive skew = tail right (mean > median); Negative skew = tail left (mean < median)</td></tr>
+      <tr><td>Correlation coefficient (r)</td><td>-1 to +1; strength and direction of relationship</td></tr>
+      <tr><td>Statistical significance</td><td>p < .05 means results unlikely due to chance (less than 5% probability)</td></tr>
+    </table>
+
+    <div class="highlight-box">
+      <div class="label">Key Concept</div>
+      <strong>Correlation does NOT equal causation.</strong> A correlation tells you two variables are related but not that one causes the other. There may be a third variable causing both, or the direction of causation may be reversed.
+    </div>
+  </div>
+</div>
+
+<!-- ===== INTERACTIVE SECTION ===== -->
+<div class="section interactive">
+  <span class="section-anchor" id="interactive"></span>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('quiz')">Multiple Choice Quiz</button>
+    <button class="tab-btn" onclick="showTab('flash')">Flashcards</button>
+    <button class="tab-btn" onclick="showTab('sa')">Short Answer Practice</button>
+  </div>
+
+  <!-- ===== QUIZ ===== -->
+  <div class="tab-panel active" id="quiz-panel">
+    <div class="quiz-progress" id="quiz-progress">Score: 0 / 0</div>
+    <div id="quiz-container"></div>
+    <div class="score-bar" id="quiz-final" style="display:none"></div>
+  </div>
+
+  <!-- ===== FLASHCARDS ===== -->
+  <div class="tab-panel" id="flash-panel">
+    <div class="fc-filters" id="fc-filters"></div>
+    <div class="fc-counter" id="fc-counter"></div>
+    <div class="fc-viewport">
+      <div class="fc-card" id="fc-card" onclick="flipCard()">
+        <div class="fc-face fc-front">
+          <div class="fc-cat" id="fc-cat"></div>
+          <div class="fc-prompt" id="fc-prompt"></div>
+        </div>
+        <div class="fc-face fc-back">
+          <div class="fc-answer" id="fc-answer"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-nav">
+      <button onclick="fcNav(-1)">&larr; Prev</button>
+      <span class="fc-count" id="fc-count"></span>
+      <button onclick="fcNav(1)">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ===== SHORT ANSWER ===== -->
+  <div class="tab-panel" id="sa-panel">
+    <div id="sa-container"></div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>Psychology Fundamentals &mdash; Essential Study Reference</p>
+</footer>
+
+<script>
+// ===== TAB SYSTEM =====
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id+'-panel').classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ===== QUIZ DATA =====
+const quizData=[
+{q:"What is the resting potential of a typical neuron?",opts:["About -70 mV","About -55 mV","About +30 mV","About 0 mV"],ans:0,exp:"The resting potential is approximately -70 mV due to the sodium-potassium pump maintaining more negative charge inside the cell."},
+{q:"Which neurotransmitter is most directly associated with Parkinson's disease when deficient?",opts:["Serotonin","Acetylcholine","Dopamine","GABA"],ans:2,exp:"Dopamine deficiency in the substantia nigra causes the motor symptoms of Parkinson's disease."},
+{q:"The thalamus relays all sensory information EXCEPT which sense?",opts:["Vision","Hearing","Touch","Smell"],ans:3,exp:"Smell (olfaction) goes directly to the olfactory cortex, bypassing the thalamus."},
+{q:"Weber's Law states that the just noticeable difference is:",opts:["A fixed amount","A constant proportion of the stimulus","Always 5%","Dependent on motivation"],ans:1,exp:"Weber's Law: the JND is a constant ratio (proportion) of the original stimulus intensity."},
+{q:"Which theory of color vision proposes three types of cones?",opts:["Opponent-process theory","Trichromatic theory","Place theory","Gate-control theory"],ans:1,exp:"The trichromatic (Young-Helmholtz) theory proposes red, green, and blue cones that combine to produce all perceived colors."},
+{q:"In classical conditioning, the conditioned stimulus is:",opts:["The naturally occurring response","The learned response","A previously neutral stimulus that now triggers a response","The stimulus that naturally triggers a response"],ans:2,exp:"The CS was originally neutral but after pairing with the US, it comes to elicit the conditioned response."},
+{q:"A slot machine pays out after an unpredictable number of plays. This is which schedule?",opts:["Fixed-ratio","Variable-ratio","Fixed-interval","Variable-interval"],ans:1,exp:"Variable-ratio schedules reinforce after an unpredictable number of responses. Slot machines are the classic example and produce the highest, most consistent response rates."},
+{q:"Which schedule of reinforcement produces the HIGHEST resistance to extinction?",opts:["Continuous","Fixed-ratio","Variable-ratio","Fixed-interval"],ans:2,exp:"Variable-ratio schedules produce the highest resistance to extinction because the unpredictability keeps the organism responding."},
+{q:"According to Miller, the capacity of short-term memory is:",opts:["5 plus or minus 2 items","7 plus or minus 2 items","9 plus or minus 2 items","Unlimited"],ans:1,exp:"George Miller's famous finding: short-term memory holds approximately 7 plus or minus 2 items (chunks)."},
+{q:"Proactive interference occurs when:",opts:["New information disrupts old memories","Old information disrupts new learning","Information decays over time","Encoding was never completed"],ans:1,exp:"Proactive interference: previously learned (old) information interferes with the ability to remember new information. Think 'pro' = forward, old info reaching forward."},
+{q:"The availability heuristic leads us to:",opts:["Judge likelihood based on how well something matches a prototype","Anchor on initial information","Judge likelihood based on how easily examples come to mind","Seek confirming evidence"],ans:2,exp:"The availability heuristic judges probability based on mental availability, meaning how quickly examples come to mind (often influenced by media, recency, or vividness)."},
+{q:"According to Chomsky, the Language Acquisition Device (LAD) is:",opts:["A teaching method for language","An innate biological mechanism for learning language","A type of reinforcement","A cultural tool"],ans:1,exp:"Chomsky argued humans have an innate, biological capacity (LAD) that allows children to acquire language naturally."},
+{q:"In the James-Lange theory of emotion, which comes FIRST?",opts:["Cognitive appraisal","Subjective emotional experience","Physiological arousal","Simultaneous arousal and emotion"],ans:2,exp:"James-Lange: Event triggers physiological arousal FIRST, then we interpret that arousal as emotion. 'I am trembling, therefore I am afraid.'"},
+{q:"The Yerkes-Dodson law states that performance is best at:",opts:["Low arousal","High arousal","Moderate arousal (for complex tasks)","Arousal doesn't affect performance"],ans:2,exp:"Yerkes-Dodson: optimal performance occurs at moderate arousal for complex tasks. Simple tasks benefit from higher arousal."},
+{q:"In Piaget's theory, a child who understands that the amount of liquid stays the same when poured into a different shaped container has mastered:",opts:["Object permanence","Egocentrism","Conservation","Abstract reasoning"],ans:2,exp:"Conservation (understanding that quantity doesn't change despite appearance change) is achieved in the concrete operational stage (7-11 years)."},
+{q:"Erikson's crisis during adolescence is:",opts:["Trust vs. Mistrust","Initiative vs. Guilt","Identity vs. Role Confusion","Intimacy vs. Isolation"],ans:2,exp:"Adolescence (12-18) is defined by the Identity vs. Role Confusion crisis, where teens work to establish a sense of self."},
+{q:"Harlow's monkey experiments demonstrated that:",opts:["Feeding is the primary basis of attachment","Contact comfort is more important than feeding for attachment","Monkeys cannot form attachments","Attachment only develops in the first week of life"],ans:1,exp:"Harlow showed infant monkeys preferred the soft cloth 'mother' over the wire 'mother' with food, demonstrating contact comfort over nourishment in attachment."},
+{q:"Freud's 'reality principle' is associated with which structure?",opts:["Id","Ego","Superego","Preconscious"],ans:1,exp:"The ego operates on the reality principle, mediating between the id's desires and the superego's moral standards while accounting for real-world constraints."},
+{q:"The Big Five personality trait 'Neuroticism' refers to:",opts:["Being creative and open to experience","Being organized and dependable","Tendency toward emotional instability and anxiety","Being outgoing and social"],ans:2,exp:"Neuroticism (the N in OCEAN) reflects emotional instability, including proneness to anxiety, moodiness, and negative emotions."},
+{q:"Which defense mechanism involves attributing your own unacceptable feelings to someone else?",opts:["Displacement","Projection","Reaction formation","Sublimation"],ans:1,exp:"Projection involves unconsciously attributing your own threatening feelings to others (e.g., an unfaithful person accusing their partner of cheating)."},
+{q:"The dopamine hypothesis of schizophrenia suggests that positive symptoms are caused by:",opts:["Too little dopamine activity","Excess dopamine activity","Too little serotonin","Excess GABA activity"],ans:1,exp:"The dopamine hypothesis links positive symptoms of schizophrenia (hallucinations, delusions) to overactivity of dopamine, supported by the effectiveness of dopamine-blocking antipsychotics."},
+{q:"The fundamental attribution error is the tendency to:",opts:["Attribute our own failures to external factors","Overattribute others' behavior to their character rather than their situation","Conform to group pressure","Attribute everything to luck"],ans:1,exp:"The FAE is overestimating dispositional (internal/character) factors and underestimating situational factors when explaining OTHER people's behavior."},
+{q:"In Milgram's obedience study, approximately what percentage administered the maximum shock?",opts:["10%","35%","50%","65%"],ans:3,exp:"About 65% of participants administered the maximum 450-volt 'shock' when instructed by the authority figure, demonstrating the powerful influence of obedience to authority."},
+{q:"Cognitive dissonance is best described as:",opts:["Disagreement between two people","Discomfort from holding conflicting cognitions or behaving contrary to beliefs","A type of reinforcement schedule","Conformity to group norms"],ans:1,exp:"Cognitive dissonance (Festinger) is the psychological tension when our behavior conflicts with our attitudes, motivating us to change one or the other."},
+{q:"The bystander effect is MOST likely when:",opts:["Only one person is present","A large number of people are present","The victim is a child","The situation is very clear"],ans:1,exp:"The bystander effect increases with more people present due to diffusion of responsibility, meaning each person feels less personally responsible to act."},
+{q:"Which research method can establish cause-and-effect relationships?",opts:["Correlational study","Case study","Experiment","Naturalistic observation"],ans:2,exp:"Only experiments (with manipulation of IV, control of confounds, and random assignment) can establish causal relationships."},
+{q:"Random assignment is used to:",opts:["Ensure the sample represents the population","Control confounding variables by equalizing groups","Increase sample size","Measure the dependent variable"],ans:1,exp:"Random assignment ensures each participant has an equal chance of being in any condition, which controls for confounding variables (internal validity)."},
+{q:"A correlation coefficient of -0.85 indicates:",opts:["A weak negative relationship","A strong negative relationship","A strong positive relationship","No relationship"],ans:1,exp:"The magnitude (0.85) indicates a strong relationship, and the negative sign indicates an inverse relationship. Strength is about the absolute value, not the sign."},
+{q:"In a positively skewed distribution:",opts:["The mean is less than the median","The mean is greater than the median","The mean equals the median","The mode is the highest value"],ans:1,exp:"In a positively skewed distribution, the tail extends to the right, pulling the mean higher than the median. Think: the mean chases the tail."},
+{q:"Bandura's Bobo doll experiment demonstrated:",opts:["Classical conditioning","Operant conditioning","Observational learning","Habituation"],ans:2,exp:"Bandura showed children who observed an adult behaving aggressively toward a Bobo doll later imitated that aggressive behavior, demonstrating observational (social) learning."}
+];
+
+let quizScore=0,quizAnswered=0;
+const qc=document.getElementById('quiz-container');
+quizData.forEach((q,i)=>{
+  const d=document.createElement('div');d.className='quiz-q';d.id='qq'+i;
+  let h=`<p>${i+1}. ${q.q}</p>`;
+  q.opts.forEach((o,j)=>{h+=`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`;});
+  h+=`<button class="check-btn" onclick="checkQuiz(${i})">Check Answer</button>`;
+  h+=`<div class="feedback" id="fb${i}"></div>`;
+  d.innerHTML=h;qc.appendChild(d);
+});
+function checkQuiz(i){
+  const sel=document.querySelector(`input[name="q${i}"]:checked`);
+  if(!sel)return;
+  const v=parseInt(sel.value),fb=document.getElementById('fb'+i),btn=document.querySelector(`#qq${i} .check-btn`);
+  btn.disabled=true;
+  document.querySelectorAll(`input[name="q${i}"]`).forEach(r=>r.disabled=true);
+  quizAnswered++;
+  if(v===quizData[i].ans){quizScore++;fb.className='feedback correct';fb.innerHTML='✓ Correct! '+quizData[i].exp;}
+  else{fb.className='feedback incorrect';fb.innerHTML='✗ Incorrect. '+quizData[i].exp;}
+  fb.style.display='block';
+  document.getElementById('quiz-progress').textContent=`Score: ${quizScore} / ${quizAnswered}`;
+  if(quizAnswered===quizData.length){document.getElementById('quiz-final').textContent=`Final Score: ${quizScore} / ${quizData.length} (${Math.round(quizScore/quizData.length*100)}%)`;document.getElementById('quiz-final').style.display='block';}
+}
+
+// ===== FLASHCARD DATA =====
+const fcData=[
+{cat:"Biological",front:"What is the all-or-none principle?",back:"A neuron either fires completely or not at all. There is no partial firing. The action potential is always the same magnitude once threshold is reached."},
+{cat:"Biological",front:"What does the myelin sheath do?",back:"Insulates the axon and speeds neural transmission via saltatory conduction (signal 'jumps' between Nodes of Ranvier). Made by Schwann cells (PNS) or oligodendrocytes (CNS)."},
+{cat:"Biological",front:"What is the function of the hypothalamus?",back:"Regulates hunger, thirst, body temperature, circadian rhythms, and controls the pituitary gland (master gland). Key link between the nervous system and endocrine system."},
+{cat:"Biological",front:"What is the role of the hippocampus?",back:"Essential for forming new explicit (declarative) memories. Damage leads to anterograde amnesia (inability to form new memories). Part of the limbic system."},
+{cat:"Biological",front:"Name the main inhibitory and excitatory neurotransmitters.",back:"GABA is the main inhibitory neurotransmitter (calming). Glutamate is the main excitatory neurotransmitter (involved in learning and memory)."},
+{cat:"Biological",front:"Sympathetic vs. parasympathetic nervous system?",back:"Sympathetic = 'fight or flight' (arousal, energy). Parasympathetic = 'rest and digest' (calming, recovery). They are complementary branches of the autonomic nervous system."},
+{cat:"Biological",front:"Broca's area vs. Wernicke's area?",back:"Broca's (left frontal): speech PRODUCTION. Damage = can understand but can't speak fluently. Wernicke's (left temporal): language COMPREHENSION. Damage = fluent but nonsensical speech."},
+{cat:"Sensation",front:"What is the absolute threshold?",back:"The minimum stimulus intensity that a person can detect 50% of the time. Below this, the stimulus is subliminal."},
+{cat:"Sensation",front:"What is sensory adaptation?",back:"Decreased sensitivity to a constant, unchanging stimulus over time. Example: you stop noticing background noise or the feeling of clothes on your skin."},
+{cat:"Sensation",front:"Rods vs. cones in the retina?",back:"Rods: peripheral vision, dim light, black-and-white, more numerous. Cones: central vision (fovea), bright light, color, fine detail. Three types of cones (RGB)."},
+{cat:"Sensation",front:"Place theory vs. frequency theory of hearing?",back:"Place theory: different frequencies activate different locations on the basilar membrane (explains high-pitch sounds). Frequency theory: neurons fire at the rate of the sound wave (explains low-pitch sounds)."},
+{cat:"Sensation",front:"Name four Gestalt principles of perception.",back:"Proximity (near objects grouped), Similarity (similar objects grouped), Closure (fill in gaps), Continuity (prefer smooth patterns). Also: figure-ground and common fate."},
+{cat:"Sensation",front:"What is signal detection theory?",back:"Detection depends on both signal strength and the observer's decision criteria (expectations, motivation). Produces four outcomes: hits, misses, false alarms, and correct rejections."},
+{cat:"Learning",front:"Define the unconditioned stimulus (US) and unconditioned response (UR).",back:"US: a stimulus that naturally and automatically triggers a response (e.g., food). UR: the unlearned, natural response to the US (e.g., salivation to food)."},
+{cat:"Learning",front:"What is extinction in classical conditioning?",back:"The weakening of the conditioned response when the conditioned stimulus is repeatedly presented without the unconditioned stimulus."},
+{cat:"Learning",front:"What is the difference between positive and negative reinforcement?",back:"Positive reinforcement: ADDING a pleasant stimulus to increase behavior. Negative reinforcement: REMOVING an aversive stimulus to increase behavior. Both INCREASE the target behavior."},
+{cat:"Learning",front:"What is a variable-ratio schedule? Give an example.",back:"Reinforcement after an unpredictable number of responses. Produces highest, steadiest response rate and greatest resistance to extinction. Example: slot machines, fishing."},
+{cat:"Learning",front:"What are the four steps of observational learning?",back:"Attention (notice the model), Retention (remember the behavior), Reproduction (ability to perform it), Motivation (desire or reason to do it). From Bandura's social learning theory."},
+{cat:"Learning",front:"What is learned helplessness?",back:"When an organism learns it cannot control outcomes, it stops trying even when escape becomes possible. Discovered by Seligman. Linked to depression and passivity."},
+{cat:"Memory",front:"What are the three stages of the Atkinson-Shiffrin memory model?",back:"Sensory memory (brief buffer) → Short-term/working memory (limited capacity, ~30 sec) → Long-term memory (unlimited capacity, potentially permanent). Attention moves info from sensory to STM; encoding moves it to LTM."},
+{cat:"Memory",front:"What is the difference between episodic and semantic memory?",back:"Both are types of explicit (declarative) memory. Episodic = personal experiences/events ('what I had for breakfast'). Semantic = general knowledge/facts ('the capital of France is Paris')."},
+{cat:"Memory",front:"What is the difference between proactive and retroactive interference?",back:"Proactive: OLD info interferes with NEW learning (pro = forward). Retroactive: NEW info interferes with OLD memories (retro = backward)."},
+{cat:"Memory",front:"What is the levels of processing framework?",back:"Craik and Lockhart: deeper processing leads to better memory. Shallow = structural (appearance). Intermediate = phonemic (sound). Deep = semantic (meaning). Semantic processing produces the best retention."},
+{cat:"Memory",front:"What is the spacing effect?",back:"Distributed practice (studying over multiple sessions) produces better long-term retention than massed practice (cramming). One of the most robust findings in memory research."},
+{cat:"Cognition",front:"What is functional fixedness?",back:"A cognitive bias that limits thinking about an object to only its traditional use. Example: failing to realize a shoe could serve as a hammer. A type of mental fixation."},
+{cat:"Cognition",front:"What is the representativeness heuristic?",back:"Judging the probability of something by how well it matches a prototype or stereotype. Can lead to base rate neglect (ignoring actual statistical probabilities)."},
+{cat:"Cognition",front:"What is confirmation bias?",back:"The tendency to search for, interpret, and remember information in a way that confirms preexisting beliefs while ignoring contradictory evidence."},
+{cat:"Cognition",front:"What is the Sapir-Whorf hypothesis?",back:"Linguistic relativity: language influences thought. Strong version (language determines thought) is largely rejected. Weak version (language influences perception and categorization) is widely accepted."},
+{cat:"Cognition",front:"Sternberg's triarchic theory of intelligence?",back:"Three types: Analytical (academic problem-solving), Creative (novel/adaptive thinking), and Practical ('street smarts,' applied intelligence). Traditional IQ tests mainly measure analytical."},
+{cat:"Motivation",front:"What is Maslow's hierarchy of needs (bottom to top)?",back:"Physiological → Safety → Love/Belonging → Esteem → Self-actualization. Lower needs generally must be met before higher needs motivate behavior."},
+{cat:"Motivation",front:"What is the Schachter-Singer two-factor theory?",back:"Emotion = physiological arousal + cognitive label. We experience arousal, then look to our environment to determine which emotion we're feeling. Context matters."},
+{cat:"Motivation",front:"How does the James-Lange theory differ from Cannon-Bard?",back:"James-Lange: arousal comes FIRST, then emotion (I tremble, so I'm afraid). Cannon-Bard: arousal and emotion occur SIMULTANEOUSLY (I tremble AND feel afraid at the same time)."},
+{cat:"Motivation",front:"What is self-determination theory?",back:"Deci and Ryan: three innate psychological needs drive motivation: Autonomy (control over one's life), Competence (mastery), and Relatedness (connection with others)."},
+{cat:"Development",front:"Name Piaget's four stages in order.",back:"Sensorimotor (0-2), Preoperational (2-7), Concrete operational (7-11), Formal operational (12+). Each stage represents a qualitatively different way of thinking."},
+{cat:"Development",front:"What is object permanence and when does it develop?",back:"Understanding that objects continue to exist even when not visible. Develops during the sensorimotor stage (around 8 months). Before this, 'out of sight, out of mind.'"},
+{cat:"Development",front:"What is Kohlberg's conventional level of moral reasoning?",back:"Stage 3 (good boy/girl orientation: seeking approval) and Stage 4 (law and order: following rules). Most adolescents and adults reason at this level."},
+{cat:"Development",front:"What are the four attachment styles from Ainsworth?",back:"Secure (explores freely, distressed at separation, comforted on return), Insecure-avoidant (little distress, avoids caregiver), Insecure-anxious/ambivalent (clingy, very distressed, hard to comfort), Disorganized (confused, inconsistent)."},
+{cat:"Development",front:"What is Vygotsky's Zone of Proximal Development?",back:"The gap between what a child can do independently and what they can do with guidance (scaffolding). Learning occurs best in this zone with appropriate support."},
+{cat:"Personality",front:"What are the three parts of Freud's personality structure?",back:"Id (pleasure principle; wants immediate gratification), Ego (reality principle; mediates between id and superego), Superego (morality principle; internalized rules and conscience)."},
+{cat:"Personality",front:"What is the Big Five (OCEAN)?",back:"Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism. The most empirically supported model of personality traits. Relatively stable across adulthood."},
+{cat:"Personality",front:"What is reciprocal determinism?",back:"Bandura's concept that behavior, personal factors (thoughts, feelings), and environmental factors all interact and influence each other. No single factor is primary."},
+{cat:"Personality",front:"What is self-efficacy?",back:"One's belief in their own ability to succeed at a specific task (Bandura). Higher self-efficacy leads to greater effort, persistence, and performance. It is task-specific, not global."},
+{cat:"Disorders",front:"What distinguishes positive from negative symptoms in schizophrenia?",back:"Positive symptoms: added experiences (hallucinations, delusions, disorganized speech). Negative symptoms: reduced/absent behaviors (flat affect, social withdrawal, lack of motivation)."},
+{cat:"Disorders",front:"What is the DSM-5?",back:"Diagnostic and Statistical Manual of Mental Disorders, 5th edition. The standard classification system for psychological disorders used by clinicians in the United States."},
+{cat:"Disorders",front:"How does OCD work?",back:"Obsessions are intrusive, unwanted thoughts causing anxiety. Compulsions are repetitive behaviors performed to reduce that anxiety. The cycle reinforces itself: obsession → anxiety → compulsion → temporary relief."},
+{cat:"Disorders",front:"What is the difference between major depression and bipolar disorder?",back:"Major depression: persistent low mood/loss of interest (at least 2 weeks). Bipolar: alternating episodes of mania (elevated mood, energy, impulsivity) and depression."},
+{cat:"Social",front:"What is the fundamental attribution error?",back:"The tendency to overattribute OTHER people's behavior to their personality/character (dispositional) and underestimate the influence of their situation. We do the opposite for ourselves (actor-observer bias)."},
+{cat:"Social",front:"What is cognitive dissonance?",back:"Psychological discomfort when holding two conflicting cognitions, or when behavior contradicts attitudes. Motivates attitude change to reduce the inconsistency. Festinger's theory."},
+{cat:"Social",front:"What did Milgram's obedience study show?",back:"About 65% of participants administered the maximum 'shock' when instructed by an authority figure. Demonstrated the powerful influence of authority on obedience, even when it conflicts with personal morality."},
+{cat:"Social",front:"What is the bystander effect?",back:"The more bystanders present, the less likely any individual is to help. Caused by diffusion of responsibility (someone else will help) and pluralistic ignorance (no one else seems worried)."},
+{cat:"Social",front:"What is stereotype threat?",back:"Steele's finding that awareness of a negative stereotype about one's group can impair performance on tasks related to that stereotype. The anxiety of confirming the stereotype undermines ability."},
+{cat:"Research",front:"What is the difference between the IV and DV?",back:"Independent variable (IV): what the researcher manipulates/changes. Dependent variable (DV): what is measured as the outcome. The DV 'depends' on the IV."},
+{cat:"Research",front:"Random assignment vs. random sampling?",back:"Random assignment: each participant has equal chance of being in any condition (controls confounds = internal validity). Random sampling: each population member has equal chance of selection (allows generalization = external validity)."},
+{cat:"Research",front:"What does p < .05 mean?",back:"The probability that the results occurred by chance alone is less than 5%. The result is considered statistically significant, meaning the effect is likely real and not due to random variation."},
+{cat:"Research",front:"What is a confounding variable?",back:"An uncontrolled variable that varies systematically with the IV and may influence the DV. Confounds threaten internal validity because you can't tell if the IV or the confound caused the effect."},
+{cat:"Research",front:"What is the difference between reliability and validity?",back:"Reliability: consistency of results (test-retest, inter-rater). Validity: accuracy, does it measure what it claims to? A test can be reliable but not valid, but it cannot be valid without being reliable."}
+];
+
+let fcFiltered=[...fcData],fcIdx=0;
+const cats=[...new Set(fcData.map(c=>c.cat))];
+const ff=document.getElementById('fc-filters');
+ff.innerHTML='<button class="fc-filter-btn active" onclick="fcFilter(\'All\',this)">All</button>'+cats.map(c=>`<button class="fc-filter-btn" onclick="fcFilter('${c}',this)">${c}</button>`).join('');
+function fcFilter(cat,btn){
+  document.querySelectorAll('.fc-filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  fcFiltered=cat==='All'?[...fcData]:fcData.filter(c=>c.cat===cat);fcIdx=0;renderFc();
+}
+function renderFc(){
+  if(!fcFiltered.length){document.getElementById('fc-prompt').textContent='No cards in this category';document.getElementById('fc-cat').textContent='';document.getElementById('fc-answer').textContent='';document.getElementById('fc-count').textContent='0 / 0';document.getElementById('fc-counter').textContent='0 cards';return;}
+  const c=fcFiltered[fcIdx];
+  document.getElementById('fc-card').classList.remove('flipped');
+  document.getElementById('fc-cat').textContent=c.cat;
+  document.getElementById('fc-prompt').textContent=c.front;
+  document.getElementById('fc-answer').textContent=c.back;
+  document.getElementById('fc-count').textContent=`${fcIdx+1} / ${fcFiltered.length}`;
+  document.getElementById('fc-counter').textContent=`${fcFiltered.length} cards`;
+}
+function flipCard(){document.getElementById('fc-card').classList.toggle('flipped');}
+function fcNav(d){fcIdx=(fcIdx+d+fcFiltered.length)%fcFiltered.length;renderFc();}
+renderFc();
+
+// ===== SHORT ANSWER DATA =====
+const saData=[
+{q:"Describe the process of an action potential from resting state to return to rest.",
+concepts:[{term:"resting potential",w:2},{term:"-70",w:1},{term:"threshold",w:2},{term:"-55",w:1},{term:"sodium",w:2},{term:"depolarization",w:2},{term:"potassium",w:2},{term:"repolarization",w:2},{term:"hyperpolarization",w:1},{term:"all-or-none",w:1},{term:"refractory",w:1}],
+model:"At rest, the neuron sits at about -70 mV (resting potential). When stimulation reaches threshold (~-55 mV), voltage-gated sodium channels open, causing rapid depolarization to about +30 mV. Then potassium channels open, causing repolarization. A brief hyperpolarization dips below resting potential before the neuron returns to -70 mV. The refractory period prevents immediate re-firing. The process follows the all-or-none principle."},
+
+{q:"Compare and contrast classical conditioning and operant conditioning.",
+concepts:[{term:"classical",w:1},{term:"operant",w:1},{term:"association",w:1},{term:"consequence",w:2},{term:"Pavlov",w:1},{term:"Skinner",w:1},{term:"involuntary",w:2},{term:"voluntary",w:2},{term:"reinforcement",w:2},{term:"punishment",w:1},{term:"conditioned stimulus",w:1},{term:"unconditioned",w:1}],
+model:"Classical conditioning (Pavlov) involves learning associations between stimuli. A neutral stimulus is paired with an unconditioned stimulus until it becomes a conditioned stimulus that elicits a conditioned response. The responses are typically involuntary (reflexive). Operant conditioning (Skinner) involves learning from consequences. Behavior is shaped by reinforcement (which increases behavior) and punishment (which decreases it). The responses are voluntary. Classical conditioning pairs stimuli; operant conditioning pairs behavior with outcomes."},
+
+{q:"Explain the Atkinson-Shiffrin model of memory, including the three stores and how information moves between them.",
+concepts:[{term:"sensory",w:2},{term:"short-term",w:2},{term:"long-term",w:2},{term:"attention",w:2},{term:"encoding",w:2},{term:"rehearsal",w:2},{term:"7",w:1},{term:"unlimited",w:1},{term:"iconic",w:1},{term:"echoic",w:1},{term:"working memory",w:1}],
+model:"The Atkinson-Shiffrin model proposes three memory stores. Sensory memory briefly holds all incoming information (iconic for visual, ~0.5 sec; echoic for auditory, ~3-4 sec). Attention transfers selected information to short-term/working memory, which holds about 7 items for 20-30 seconds. Rehearsal (especially elaborative) encodes information into long-term memory, which has essentially unlimited capacity and potentially permanent duration."},
+
+{q:"Describe Piaget's stages of cognitive development, including the key achievement of each stage.",
+concepts:[{term:"sensorimotor",w:2},{term:"preoperational",w:2},{term:"concrete operational",w:2},{term:"formal operational",w:2},{term:"object permanence",w:2},{term:"conservation",w:2},{term:"egocentrism",w:1},{term:"abstract",w:1},{term:"hypothetical",w:1},{term:"symbolic",w:1}],
+model:"Piaget proposed four stages. Sensorimotor (0-2): infants learn through senses and motor actions; key achievement is object permanence. Preoperational (2-7): children develop symbolic thinking and language but are egocentric and lack conservation. Concrete operational (7-11): children master conservation and logical thought about concrete events. Formal operational (12+): abstract reasoning, hypothetical thinking, and systematic problem-solving emerge."},
+
+{q:"Explain the four major theories of emotion (James-Lange, Cannon-Bard, Schachter-Singer, and Lazarus).",
+concepts:[{term:"James-Lange",w:2},{term:"Cannon-Bard",w:2},{term:"Schachter",w:2},{term:"Lazarus",w:2},{term:"arousal",w:2},{term:"cognitive",w:2},{term:"appraisal",w:1},{term:"simultaneous",w:1},{term:"label",w:1},{term:"physiological",w:1},{term:"two-factor",w:1}],
+model:"James-Lange: an event causes physiological arousal first, and we then interpret that arousal as emotion. Cannon-Bard: arousal and emotion occur simultaneously and independently. Schachter-Singer (two-factor): emotion requires both physiological arousal AND a cognitive label based on context. Lazarus (cognitive appraisal): cognitive appraisal must come BEFORE any emotional or physiological response. Each theory differs on the timing and role of cognition and arousal."},
+
+{q:"Compare the fundamental attribution error, self-serving bias, and actor-observer bias.",
+concepts:[{term:"fundamental attribution error",w:2},{term:"dispositional",w:2},{term:"situational",w:2},{term:"self-serving",w:2},{term:"success",w:1},{term:"failure",w:1},{term:"internal",w:1},{term:"external",w:1},{term:"actor-observer",w:1},{term:"others",w:1}],
+model:"The fundamental attribution error (FAE) is overattributing others' behavior to their character (dispositional) while underestimating situational factors. The self-serving bias attributes our own successes to internal factors (skill) and failures to external factors (bad luck). The actor-observer bias combines both: we explain our own behavior situationally but explain others' behavior dispositionally. All three involve systematic errors in how we explain behavior."},
+
+{q:"Explain the difference between an experiment and a correlational study, including why only experiments can establish causation.",
+concepts:[{term:"experiment",w:1},{term:"correlational",w:1},{term:"causation",w:2},{term:"manipulate",w:2},{term:"independent variable",w:1},{term:"random assignment",w:2},{term:"confound",w:2},{term:"control",w:1},{term:"third variable",w:1},{term:"relationship",w:1}],
+model:"In an experiment, the researcher manipulates the independent variable, uses random assignment to control confounding variables, and measures the dependent variable. Because confounds are controlled, differences in the DV can be attributed to the IV, establishing causation. In a correlational study, the researcher measures naturally occurring variables without manipulation. Correlations show relationships but cannot prove causation because there may be confounding third variables, and the direction of causation is ambiguous."},
+
+{q:"Describe Erikson's first five psychosocial stages, including the crisis and approximate age for each.",
+concepts:[{term:"trust",w:2},{term:"mistrust",w:1},{term:"autonomy",w:2},{term:"shame",w:1},{term:"initiative",w:2},{term:"guilt",w:1},{term:"industry",w:2},{term:"inferiority",w:1},{term:"identity",w:2},{term:"role confusion",w:1},{term:"psychosocial",w:1}],
+model:"Erikson's first five psychosocial stages: Trust vs. Mistrust (0-1 year, developing basic trust through reliable caregiving), Autonomy vs. Shame/Doubt (1-3, developing independence and self-control), Initiative vs. Guilt (3-6, taking initiative in activities and play), Industry vs. Inferiority (6-12, developing competence through achievement), and Identity vs. Role Confusion (12-18, forming a coherent sense of self). Each stage presents a crisis that shapes personality development."}
+];
+
+const sac=document.getElementById('sa-container');
+saData.forEach((q,i)=>{
+  const d=document.createElement('div');d.className='sa-q';d.id='sa'+i;
+  d.innerHTML=`<p>${i+1}. ${q.q}</p><textarea placeholder="Type your answer here..."></textarea><button class="sa-btn" onclick="gradeSA(${i})">Grade Answer</button><div class="sa-result" id="sar${i}"></div>`;
+  sac.appendChild(d);
+});
+function gradeSA(i){
+  const ans=document.querySelector(`#sa${i} textarea`).value.toLowerCase();
+  if(!ans.trim())return;
+  const q=saData[i];let earned=0,total=0,tags=[];
+  q.concepts.forEach(c=>{
+    total+=c.w;
+    const found=ans.includes(c.term.toLowerCase());
+    if(found){earned+=c.w;tags.push(`<span class="sa-tag hit">✓ ${c.term}</span>`);}
+    else{tags.push(`<span class="sa-tag miss">✗ ${c.term}</span>`);}
+  });
+  const pct=Math.round(earned/total*100);
+  const color=pct>=70?'#4caf50':pct>=40?'#ff9800':'#f44336';
+  const r=document.getElementById('sar'+i);
+  r.innerHTML=`<div class="sa-score-bar"><div class="sa-score-fill" style="width:${pct}%;background:${color}"></div></div><div style="font-weight:600;color:${color};font-size:.9rem">${pct}% concept coverage</div><div class="sa-tags">${tags.join('')}</div><details class="sa-model"><summary>View Model Answer</summary><p>${q.model}</p></details>`;
+  r.style.display='block';
+}
+</script>
+
+</main>
+
+<footer>
+  <p>Psychology Fundamentals &mdash; Essential Study Reference</p>
+</footer>
+
+</body>
+</html>
