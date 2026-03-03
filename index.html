@@ -124,9 +124,40 @@
       .fact-table td:first-child{white-space:normal}
       .toc-grid{grid-template-columns:1fr}
     }
-  </style>
+  
+/* ─── WCAG 2.1 AA: Visible focus indicators ─── */
+:focus-visible {
+  outline: 3px solid #005fcc !important;
+  outline-offset: 2px !important;
+}
+.tab-btn:focus-visible, .nav-btn:focus-visible {
+  outline: 3px solid #005fcc !important;
+  outline-offset: 2px !important;
+}
+/* ─── Skip link ─── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: #005fcc;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0 0 6px 6px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+</style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 
 <!-- HERO -->
 <header class="hero">
@@ -832,8 +863,8 @@ function checkQuiz(i){
   btn.disabled=true;
   document.querySelectorAll(`input[name="q${i}"]`).forEach(r=>r.disabled=true);
   quizAnswered++;
-  if(v===quizData[i].ans){quizScore++;fb.className='feedback correct';fb.innerHTML='✓ Correct! '+quizData[i].exp;}
-  else{fb.className='feedback incorrect';fb.innerHTML='✗ Incorrect. '+quizData[i].exp;}
+  if(v===quizData[i].ans){quizScore++;fb.className='feedback correct';fb.innerHTML='<span aria-hidden="true">✓</span> Correct! '+quizData[i].exp;}
+  else{fb.className='feedback incorrect';fb.innerHTML='<span aria-hidden="true">✗</span> Incorrect. '+quizData[i].exp;}
   fb.style.display='block';
   document.getElementById('quiz-progress').textContent=`Score: ${quizScore} / ${quizAnswered}`;
   if(quizAnswered===quizData.length){document.getElementById('quiz-final').textContent=`Final Score: ${quizScore} / ${quizData.length} (${Math.round(quizScore/quizData.length*100)}%)`;document.getElementById('quiz-final').style.display='block';}
@@ -860,7 +891,7 @@ const fcData=[
 {cat:"Learning",front:"What is a variable-ratio schedule? Give an example.",back:"Reinforcement after an unpredictable number of responses. Produces highest, steadiest response rate and greatest resistance to extinction. Example: slot machines, fishing."},
 {cat:"Learning",front:"What are the four steps of observational learning?",back:"Attention (notice the model), Retention (remember the behavior), Reproduction (ability to perform it), Motivation (desire or reason to do it). From Bandura's social learning theory."},
 {cat:"Learning",front:"What is learned helplessness?",back:"When an organism learns it cannot control outcomes, it stops trying even when escape becomes possible. Discovered by Seligman. Linked to depression and passivity."},
-{cat:"Memory",front:"What are the three stages of the Atkinson-Shiffrin memory model?",back:"Sensory memory (brief buffer) → Short-term/working memory (limited capacity, ~30 sec) → Long-term memory (unlimited capacity, potentially permanent). Attention moves info from sensory to STM; encoding moves it to LTM."},
+{cat:"Memory",front:"What are the three stages of the Atkinson-Shiffrin memory model?",back:"Sensory memory (brief buffer) <span aria-hidden="true">→</span> Short-term/working memory (limited capacity, ~30 sec) <span aria-hidden="true">→</span> Long-term memory (unlimited capacity, potentially permanent). Attention moves info from sensory to STM; encoding moves it to LTM."},
 {cat:"Memory",front:"What is the difference between episodic and semantic memory?",back:"Both are types of explicit (declarative) memory. Episodic = personal experiences/events ('what I had for breakfast'). Semantic = general knowledge/facts ('the capital of France is Paris')."},
 {cat:"Memory",front:"What is the difference between proactive and retroactive interference?",back:"Proactive: OLD info interferes with NEW learning (pro = forward). Retroactive: NEW info interferes with OLD memories (retro = backward)."},
 {cat:"Memory",front:"What is the levels of processing framework?",back:"Craik and Lockhart: deeper processing leads to better memory. Shallow = structural (appearance). Intermediate = phonemic (sound). Deep = semantic (meaning). Semantic processing produces the best retention."},
@@ -870,7 +901,7 @@ const fcData=[
 {cat:"Cognition",front:"What is confirmation bias?",back:"The tendency to search for, interpret, and remember information in a way that confirms preexisting beliefs while ignoring contradictory evidence."},
 {cat:"Cognition",front:"What is the Sapir-Whorf hypothesis?",back:"Linguistic relativity: language influences thought. Strong version (language determines thought) is largely rejected. Weak version (language influences perception and categorization) is widely accepted."},
 {cat:"Cognition",front:"Sternberg's triarchic theory of intelligence?",back:"Three types: Analytical (academic problem-solving), Creative (novel/adaptive thinking), and Practical ('street smarts,' applied intelligence). Traditional IQ tests mainly measure analytical."},
-{cat:"Motivation",front:"What is Maslow's hierarchy of needs (bottom to top)?",back:"Physiological → Safety → Love/Belonging → Esteem → Self-actualization. Lower needs generally must be met before higher needs motivate behavior."},
+{cat:"Motivation",front:"What is Maslow's hierarchy of needs (bottom to top)?",back:"Physiological <span aria-hidden="true">→</span> Safety <span aria-hidden="true">→</span> Love/Belonging <span aria-hidden="true">→</span> Esteem <span aria-hidden="true">→</span> Self-actualization. Lower needs generally must be met before higher needs motivate behavior."},
 {cat:"Motivation",front:"What is the Schachter-Singer two-factor theory?",back:"Emotion = physiological arousal + cognitive label. We experience arousal, then look to our environment to determine which emotion we're feeling. Context matters."},
 {cat:"Motivation",front:"How does the James-Lange theory differ from Cannon-Bard?",back:"James-Lange: arousal comes FIRST, then emotion (I tremble, so I'm afraid). Cannon-Bard: arousal and emotion occur SIMULTANEOUSLY (I tremble AND feel afraid at the same time)."},
 {cat:"Motivation",front:"What is self-determination theory?",back:"Deci and Ryan: three innate psychological needs drive motivation: Autonomy (control over one's life), Competence (mastery), and Relatedness (connection with others)."},
@@ -885,7 +916,7 @@ const fcData=[
 {cat:"Personality",front:"What is self-efficacy?",back:"One's belief in their own ability to succeed at a specific task (Bandura). Higher self-efficacy leads to greater effort, persistence, and performance. It is task-specific, not global."},
 {cat:"Disorders",front:"What distinguishes positive from negative symptoms in schizophrenia?",back:"Positive symptoms: added experiences (hallucinations, delusions, disorganized speech). Negative symptoms: reduced/absent behaviors (flat affect, social withdrawal, lack of motivation)."},
 {cat:"Disorders",front:"What is the DSM-5?",back:"Diagnostic and Statistical Manual of Mental Disorders, 5th edition. The standard classification system for psychological disorders used by clinicians in the United States."},
-{cat:"Disorders",front:"How does OCD work?",back:"Obsessions are intrusive, unwanted thoughts causing anxiety. Compulsions are repetitive behaviors performed to reduce that anxiety. The cycle reinforces itself: obsession → anxiety → compulsion → temporary relief."},
+{cat:"Disorders",front:"How does OCD work?",back:"Obsessions are intrusive, unwanted thoughts causing anxiety. Compulsions are repetitive behaviors performed to reduce that anxiety. The cycle reinforces itself: obsession <span aria-hidden="true">→</span> anxiety <span aria-hidden="true">→</span> compulsion <span aria-hidden="true">→</span> temporary relief."},
 {cat:"Disorders",front:"What is the difference between major depression and bipolar disorder?",back:"Major depression: persistent low mood/loss of interest (at least 2 weeks). Bipolar: alternating episodes of mania (elevated mood, energy, impulsivity) and depression."},
 {cat:"Social",front:"What is the fundamental attribution error?",back:"The tendency to overattribute OTHER people's behavior to their personality/character (dispositional) and underestimate the influence of their situation. We do the opposite for ourselves (actor-observer bias)."},
 {cat:"Social",front:"What is cognitive dissonance?",back:"Psychological discomfort when holding two conflicting cognitions, or when behavior contradicts attitudes. Motivates attitude change to reduce the inconsistency. Festinger's theory."},
@@ -969,8 +1000,8 @@ function gradeSA(i){
   q.concepts.forEach(c=>{
     total+=c.w;
     const found=ans.includes(c.term.toLowerCase());
-    if(found){earned+=c.w;tags.push(`<span class="sa-tag hit">✓ ${c.term}</span>`);}
-    else{tags.push(`<span class="sa-tag miss">✗ ${c.term}</span>`);}
+    if(found){earned+=c.w;tags.push(`<span class="sa-tag hit"><span aria-hidden="true">✓</span> ${c.term}</span>`);}
+    else{tags.push(`<span class="sa-tag miss"><span aria-hidden="true">✗</span> ${c.term}</span>`);}
   });
   const pct=Math.round(earned/total*100);
   const color=pct>=70?'#4caf50':pct>=40?'#ff9800':'#f44336';
@@ -986,7 +1017,7 @@ function gradeSA(i){
   <p>Psychology Fundamentals &mdash; Essential Study Reference</p>
 </footer>
 <div style="max-width: 800px; margin: 40px auto; padding: 20px 30px; background: #fff8e1; border-left: 4px solid #f9a825; border-radius: 8px; font-size: 14px; line-height: 1.6; color: #555;">
-  <div style="font-weight: bold; font-size: 15px; margin-bottom: 10px;">⚠️ Important Notice</div>
+  <div style="font-weight: bold; font-size: 15px; margin-bottom: 10px;"><span aria-hidden="true">⚠️</span> Important Notice</div>
   <p style="margin: 0 0 10px 0;">These study resources are provided free of charge for educational purposes only. They are intended as supplemental study aids and should not be used as a substitute for your course textbooks, lecture materials, or the guidance of your instructors.</p>
   <p style="margin: 0 0 10px 0;">While every effort has been made to ensure accuracy, this content may contain errors, omissions, or information that is out of date. Science is constantly evolving, and material that was accurate at the time of writing may no longer reflect current understanding. Always verify important facts, formulas, and concepts against your official course materials.</p>
   <p style="margin: 0 0 10px 0;">No guarantees are made regarding the completeness, accuracy, or reliability of any information presented on these sites. Use at your own discretion. If you spot an error, we appreciate you letting us know so it can be corrected.</p>
