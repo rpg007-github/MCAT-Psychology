@@ -9,14 +9,19 @@
     :root{--bg:#faf7f6;--bg-card:#fff;--text:#2c2c2c;--text-muted:#6b6b6b;--accent:#c0616b;--accent-dark:#9e4550;--accent-light:#fceced;--border:#e0d5d3;--border-light:#f0eae8;--highlight:#fef8e6;--highlight-border:#e8c84a;--mnemonic-bg:#edf7ee;--mnemonic-border:#6bbd72;--formula-bg:#fceced;--formula-border:#d4868e;--shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);--shadow-hover:0 2px 8px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06)}
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
-
+    /* SKIP LINK */
+    .skip-link{position:absolute;top:-100px;left:1rem;background:#005fcc;color:#fff;padding:.6rem 1.2rem;border-radius:0 0 6px 6px;font-weight:700;font-size:.95rem;text-decoration:none;z-index:9999;transition:top .2s}
+    .skip-link:focus{top:0}
+    /* SR-ONLY */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    /* FOCUS */
+    :focus-visible{outline:3px solid #005fcc !important;outline-offset:2px !important}
     /* HERO */
     .hero{background:linear-gradient(135deg,#5e2028 0%,#c0616b 40%,#d8898f 100%);color:#fff;padding:4rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden}
     .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
     .hero h1{font-family:'Crimson Pro',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;letter-spacing:-.02em;position:relative}
     .hero .subtitle{font-size:1.15rem;opacity:.85;margin-top:.5rem;font-weight:300;position:relative}
     .hero .tagline{display:inline-block;margin-top:1rem;background:rgba(255,255,255,.15);backdrop-filter:blur(4px);padding:.35rem 1.2rem;border-radius:99px;font-size:.85rem;font-weight:500;letter-spacing:.03em;position:relative}
-
     /* LAYOUT */
     .container{max-width:1100px;margin:0 auto;padding:0 1.5rem}
     .toc{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:2rem;margin:2rem auto;max-width:860px;box-shadow:var(--shadow)}
@@ -25,7 +30,6 @@
     .toc-grid a{color:var(--text);text-decoration:none;padding:.45rem .7rem;border-radius:6px;font-size:.92rem;transition:all .2s;display:flex;align-items:baseline;gap:.4rem}
     .toc-grid a:hover{background:var(--accent-light);color:var(--accent-dark)}
     .toc-grid a .num{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:500;min-width:1.6rem}
-
     /* CARDS */
     .section{margin:2.5rem 0}
     .section-anchor{display:block;position:relative;top:-1rem;visibility:hidden}
@@ -37,32 +41,33 @@
     .card p,.card li{font-size:.97rem;margin-bottom:.5rem}
     .card ul,.card ol{padding-left:1.3rem;margin:.5rem 0}
     .card li{margin-bottom:.35rem}
-
     /* TABLES */
     .fact-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.92rem}
     .fact-table th{background:var(--accent);color:#fff;padding:.55rem .75rem;text-align:left;font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
     .fact-table td{padding:.55rem .75rem;border-bottom:1px solid var(--border-light)}
     .fact-table tr:hover td{background:var(--accent-light)}
     .fact-table td:first-child{font-weight:500;white-space:nowrap}
-
     /* CALLOUT BOXES */
     .formula-box{background:var(--formula-bg);border-left:3px solid var(--formula-border);padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:1rem 0;font-family:'JetBrains Mono',monospace;font-size:.88rem;line-height:1.8}
     .mnemonic-box{background:var(--mnemonic-bg);border-left:3px solid var(--mnemonic-border);padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:1rem 0}
     .mnemonic-box .label{font-weight:700;color:#3a7d42;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
     .highlight-box{background:var(--highlight);border-left:3px solid var(--highlight-border);padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:1rem 0}
     .highlight-box .label{font-weight:700;color:#b8941e;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
-
     code{font-family:'JetBrains Mono',monospace;font-size:.85em;background:var(--accent-light);padding:.15em .4em;border-radius:4px}
-
+    /* WORKED EXAMPLES */
+    .worked-example{background:linear-gradient(135deg,#f0f7ff 0%,#e8f4fd 100%);border:1px solid #b8d4f0;border-left:4px solid #3a7fc1;border-radius:0 10px 10px 0;padding:1.2rem 1.4rem;margin:1.2rem 0;position:relative}
+    .worked-example::before{content:'Worked Example';display:inline-block;background:#3a7fc1;color:#fff;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .7rem;border-radius:4px;margin-bottom:.8rem}
+    .worked-example h4{font-family:'Crimson Pro',serif;font-size:1.05rem;font-weight:600;color:#1e4d7b;margin-bottom:.8rem}
+    .step-box{border-left:3px solid #3a7fc1;padding:.5rem .9rem;margin:.5rem 0;background:rgba(255,255,255,.7);border-radius:0 6px 6px 0}
+    .step-label{font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;color:#3a7fc1;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:.2rem}
     /* INTERACTIVE TABS */
     .interactive{margin:3rem 0}
-    .tab-bar{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+    .tab-bar{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;role:tablist}
     .tab-btn{padding:.6rem 1.3rem;border:2px solid var(--border);background:var(--bg-card);border-radius:8px;cursor:pointer;font-family:'Source Sans 3',sans-serif;font-size:.92rem;font-weight:600;color:var(--text-muted);transition:all .2s}
     .tab-btn:hover{border-color:var(--accent);color:var(--accent)}
     .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
     .tab-panel{display:none}
     .tab-panel.active{display:block}
-
     /* QUIZ */
     .quiz-progress{font-size:.9rem;color:var(--text-muted);margin-bottom:1rem;font-weight:500}
     .quiz-q{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1rem;box-shadow:var(--shadow)}
@@ -77,7 +82,6 @@
     .quiz-q .check-btn:hover{background:var(--accent-dark)}
     .quiz-q .check-btn:disabled{opacity:.5;cursor:default}
     .score-bar{background:var(--accent-light);border-radius:8px;padding:1rem 1.5rem;text-align:center;font-weight:600;font-size:1.05rem;color:var(--accent-dark);margin-top:1rem}
-
     /* FLASHCARDS */
     .fc-filters{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
     .fc-filter-btn{padding:.35rem .9rem;border:1px solid var(--border);background:var(--bg-card);border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:500;transition:all .2s}
@@ -96,7 +100,6 @@
     .fc-nav button{padding:.45rem 1.2rem;border:2px solid var(--border);background:var(--bg-card);border-radius:6px;cursor:pointer;font-weight:600;font-size:.88rem;transition:all .2s}
     .fc-nav button:hover{border-color:var(--accent);color:var(--accent)}
     .fc-nav .fc-count{font-size:.9rem;color:var(--text-muted);min-width:5rem;text-align:center}
-
     /* SHORT ANSWER */
     .sa-q{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1.2rem;box-shadow:var(--shadow)}
     .sa-q p{font-weight:600;margin-bottom:.6rem}
@@ -113,10 +116,8 @@
     .sa-tag.miss{background:#f0f0f0;color:#999}
     .sa-model{margin-top:.6rem;padding:.8rem;background:var(--accent-light);border-radius:6px;font-size:.9rem;line-height:1.6}
     .sa-model summary{cursor:pointer;font-weight:600;color:var(--accent-dark);font-size:.88rem}
-
     /* FOOTER */
     footer{text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:.82rem}
-
     /* RESPONSIVE */
     @media(max-width:700px){
       .card{padding:1.5rem}
@@ -124,40 +125,11 @@
       .fact-table td:first-child{white-space:normal}
       .toc-grid{grid-template-columns:1fr}
     }
-  
-/* ─── WCAG 2.1 AA: Visible focus indicators ─── */
-:focus-visible {
-  outline: 3px solid #005fcc !important;
-  outline-offset: 2px !important;
-}
-.tab-btn:focus-visible, .nav-btn:focus-visible {
-  outline: 3px solid #005fcc !important;
-  outline-offset: 2px !important;
-}
-/* ─── Skip link ─── */
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 1rem;
-  background: #005fcc;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0 0 6px 6px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  z-index: 9999;
-  transition: top 0.2s;
-}
-.skip-link:focus {
-  top: 0;
-}
-
-</style>
+  </style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
-
+<div id="live-announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
 <!-- HERO -->
 <header class="hero">
@@ -167,7 +139,7 @@
 </header>
 
 <!-- TABLE OF CONTENTS -->
-<nav class="toc container">
+<nav class="toc container" aria-label="Page contents">
   <h2>Contents</h2>
   <div class="toc-grid">
     <a href="#s01"><span class="num">01</span> Biological Bases of Behavior</a>
@@ -185,10 +157,10 @@
   </div>
 </nav>
 
-<main class="container">
+<main id="main-content" class="container">
 
-<!-- ===== SECTION 01: BIOLOGICAL BASES ===== -->
-<div class="section">
+<!-- ===== SECTION 01 ===== -->
+<section class="section">
   <span class="section-anchor" id="s01"></span>
   <div class="card">
     <h2><span class="num">01</span> Biological Bases of Behavior</h2>
@@ -201,12 +173,25 @@
     <p>Neurons fire according to the all-or-none principle. At rest, a neuron sits at approximately -70 mV (resting potential). When stimulation reaches threshold (about -55 mV), voltage-gated sodium channels open and the cell depolarizes rapidly to about +30 mV. Then potassium channels open, causing repolarization. A brief hyperpolarization follows before the neuron returns to resting potential. The refractory period prevents immediate re-firing and ensures signals travel in one direction.</p>
 
     <div class="formula-box">
-      Resting Potential: ~-70 mV &rarr; Threshold: ~-55 mV &rarr; Depolarization: ~+30 mV &rarr; Repolarization &rarr; Hyperpolarization &rarr; Rest
+      Resting Potential: ~-70 mV <span aria-hidden="true">&rarr;</span> Threshold: ~-55 mV <span aria-hidden="true">&rarr;</span> Depolarization: ~+30 mV <span aria-hidden="true">&rarr;</span> Repolarization <span aria-hidden="true">&rarr;</span> Hyperpolarization <span aria-hidden="true">&rarr;</span> Rest
+    </div>
+
+    <div class="worked-example">
+      <h4>Tracing an Action Potential Step by Step</h4>
+      <p>A sensory neuron in your fingertip detects heat. Here is what happens inside that neuron:</p>
+      <div class="step-box"><span class="step-label">Step 1 &mdash; Resting State</span>The neuron sits at &minus;70 mV. The inside of the cell is more negative than the outside. Sodium (Na+) wants to rush in, but channels are closed.</div>
+      <div class="step-box"><span class="step-label">Step 2 &mdash; Threshold Reached</span>The heat stimulus depolarizes the membrane to about &minus;55 mV. This is the threshold. It is all-or-none: either the neuron fires fully or not at all.</div>
+      <div class="step-box"><span class="step-label">Step 3 &mdash; Depolarization</span>Voltage-gated Na+ channels fly open. Sodium floods in. The inside shoots to about +30 mV. This is the peak of the action potential.</div>
+      <div class="step-box"><span class="step-label">Step 4 &mdash; Repolarization</span>Na+ channels close. K+ channels open. Potassium rushes out, bringing voltage back down.</div>
+      <div class="step-box"><span class="step-label">Step 5 &mdash; Hyperpolarization</span>K+ channels close a little late, dipping the voltage briefly below &minus;70 mV. During the refractory period the neuron cannot fire again immediately.</div>
+      <div class="step-box"><span class="step-label">Step 6 &mdash; Reset</span>The sodium-potassium pump restores balance. The neuron is ready to fire again.</div>
+      <p style="margin-top:.6rem;font-size:.9rem;color:#555"><strong>Exam tip:</strong> Remember that depolarization = Na+ IN and repolarization = K+ OUT.</p>
     </div>
 
     <h3>Key Neurotransmitters</h3>
     <table class="fact-table">
-      <tr><th>Neurotransmitter</th><th>Function</th><th>Too Little</th><th>Too Much</th></tr>
+      <caption class="sr-only">Key neurotransmitters, their functions, and effects of imbalance</caption>
+      <tr><th scope="col">Neurotransmitter</th><th scope="col">Function</th><th scope="col">Too Little</th><th scope="col">Too Much</th></tr>
       <tr><td>Acetylcholine (ACh)</td><td>Muscle contraction, memory, attention</td><td>Alzheimer's disease</td><td>Muscle spasms</td></tr>
       <tr><td>Dopamine</td><td>Reward, motivation, movement</td><td>Parkinson's disease, depression</td><td>Schizophrenia (positive symptoms)</td></tr>
       <tr><td>Serotonin</td><td>Mood, sleep, appetite</td><td>Depression, anxiety, OCD</td><td>Serotonin syndrome</td></tr>
@@ -221,12 +206,21 @@
       <strong>Neurotransmitter actions:</strong> "DANG SEE" = Dopamine (reward/movement), ACh (muscle/memory), Norepinephrine (arousal), GABA (inhibition), Serotonin (mood/sleep), Endorphins (pain relief), Glutamate (excitation)
     </div>
 
+    <div class="worked-example">
+      <h4>Why Parkinson's and Schizophrenia Seem Like Opposites</h4>
+      <p>Both disorders involve dopamine, but in opposite directions. This is a great exam pattern to know.</p>
+      <div class="step-box"><span class="step-label">Parkinson's Disease</span>Neurons in the substantia nigra that produce dopamine die off. Result: too little dopamine in motor circuits. Symptoms = tremor, rigidity, slow movement. Treatment: give the brain a dopamine precursor (L-DOPA).</div>
+      <div class="step-box"><span class="step-label">Schizophrenia (positive symptoms)</span>Excess dopamine activity in certain brain pathways. Result: hallucinations and delusions. Treatment: dopamine-blocking antipsychotics.</div>
+      <div class="step-box"><span class="step-label">The Pattern</span>Dopamine too low = movement problems. Dopamine too high = thought problems. This is why antipsychotic drugs sometimes cause Parkinson-like movement side effects &mdash; they block too much dopamine.</div>
+    </div>
+
     <h3>The Nervous System</h3>
     <p>The nervous system divides into the Central Nervous System (CNS = brain + spinal cord) and the Peripheral Nervous System (PNS). The PNS further splits into the somatic nervous system (voluntary muscle control) and the autonomic nervous system (involuntary functions). The autonomic system has two branches: the sympathetic nervous system ("fight or flight," which increases heart rate, dilates pupils, and inhibits digestion) and the parasympathetic nervous system ("rest and digest," which slows heart rate and promotes digestion).</p>
 
     <h3>Brain Structures</h3>
     <table class="fact-table">
-      <tr><th>Structure</th><th>Location</th><th>Key Functions</th></tr>
+      <caption class="sr-only">Brain structures, their locations, and key functions</caption>
+      <tr><th scope="col">Structure</th><th scope="col">Location</th><th scope="col">Key Functions</th></tr>
       <tr><td>Medulla oblongata</td><td>Brainstem</td><td>Heart rate, breathing, blood pressure (vital functions)</td></tr>
       <tr><td>Pons</td><td>Brainstem</td><td>Sleep, arousal, relays signals to cerebellum</td></tr>
       <tr><td>Cerebellum</td><td>Hindbrain</td><td>Balance, coordination, motor learning</td></tr>
@@ -242,7 +236,8 @@
 
     <h3>Cerebral Cortex Lobes</h3>
     <table class="fact-table">
-      <tr><th>Lobe</th><th>Primary Function</th><th>Key Details</th></tr>
+      <caption class="sr-only">Cerebral cortex lobes and their functions</caption>
+      <tr><th scope="col">Lobe</th><th scope="col">Primary Function</th><th scope="col">Key Details</th></tr>
       <tr><td>Frontal</td><td>Executive function, planning, personality, motor</td><td>Contains primary motor cortex (precentral gyrus) and prefrontal cortex</td></tr>
       <tr><td>Parietal</td><td>Somatosensory processing</td><td>Contains primary somatosensory cortex (postcentral gyrus)</td></tr>
       <tr><td>Temporal</td><td>Auditory processing, language, memory</td><td>Contains auditory cortex and Wernicke's area</td></tr>
@@ -257,21 +252,22 @@
     <h3>Endocrine System Highlights</h3>
     <p>The endocrine system uses hormones (chemical messengers in the bloodstream) that work more slowly but have longer-lasting effects than neurotransmitters. The pituitary gland is the "master gland," controlled by the hypothalamus. The adrenal glands produce cortisol (stress hormone) and epinephrine/norepinephrine (adrenaline). The thyroid regulates metabolism. The pineal gland produces melatonin for sleep-wake cycles.</p>
   </div>
-</div>
+</section>
 
-<!-- ===== SECTION 02: SENSATION & PERCEPTION ===== -->
-<div class="section">
+<!-- ===== SECTION 02 ===== -->
+<section class="section">
   <span class="section-anchor" id="s02"></span>
   <div class="card">
     <h2><span class="num">02</span> Sensation &amp; Perception</h2>
-    <p>Sensation is the process of detecting physical energy from the environment and encoding it as neural signals. Perception is the brain's interpretation and organization of those signals into meaningful experience. The two processes are distinct but deeply intertwined.</p>
+    <p>Sensation is the process of detecting physical energy from the environment and encoding it as neural signals. Perception is the brain's interpretation and organization of those signals into meaningful experience.</p>
 
     <h3>Key Thresholds</h3>
     <table class="fact-table">
-      <tr><th>Concept</th><th>Definition</th></tr>
+      <caption class="sr-only">Sensory threshold concepts and definitions</caption>
+      <tr><th scope="col">Concept</th><th scope="col">Definition</th></tr>
       <tr><td>Absolute threshold</td><td>Minimum stimulus intensity detected 50% of the time</td></tr>
       <tr><td>Difference threshold (JND)</td><td>Smallest detectable difference between two stimuli</td></tr>
-      <tr><td>Weber's Law</td><td>JND is a constant proportion of the original stimulus (&#916;I/I = k)</td></tr>
+      <tr><td>Weber's Law</td><td>JND is a constant proportion of the original stimulus (&Delta;I/I = k)</td></tr>
       <tr><td>Signal detection theory</td><td>Detection depends on signal strength AND decision criteria (hits, misses, false alarms, correct rejections)</td></tr>
       <tr><td>Sensory adaptation</td><td>Decreased sensitivity after prolonged, constant stimulation</td></tr>
     </table>
@@ -280,19 +276,28 @@
     <p>Light enters the eye through the cornea, passes through the pupil (controlled by the iris), and is focused by the lens onto the retina. The retina contains photoreceptors: rods (peripheral vision, dim light, black-and-white) and cones (central vision, color, detail, concentrated in the fovea). Visual information travels via the optic nerve, crosses at the optic chiasm, passes through the lateral geniculate nucleus (LGN) of the thalamus, and reaches the primary visual cortex in the occipital lobe.</p>
 
     <div class="formula-box">
-      Pathway: Cornea &rarr; Pupil &rarr; Lens &rarr; Retina (rods/cones) &rarr; Bipolar cells &rarr; Ganglion cells &rarr; Optic nerve &rarr; Optic chiasm &rarr; LGN (thalamus) &rarr; Visual cortex
+      Pathway: Cornea <span aria-hidden="true">&rarr;</span> Pupil <span aria-hidden="true">&rarr;</span> Lens <span aria-hidden="true">&rarr;</span> Retina (rods/cones) <span aria-hidden="true">&rarr;</span> Bipolar cells <span aria-hidden="true">&rarr;</span> Ganglion cells <span aria-hidden="true">&rarr;</span> Optic nerve <span aria-hidden="true">&rarr;</span> Optic chiasm <span aria-hidden="true">&rarr;</span> LGN (thalamus) <span aria-hidden="true">&rarr;</span> Visual cortex
     </div>
 
     <p>Color vision theories: the trichromatic theory (Young-Helmholtz) says three types of cones (red, green, blue) combine to produce all colors. The opponent-process theory (Hering) says color is processed in opposing pairs (red-green, blue-yellow, black-white). Both theories are correct at different stages of processing.</p>
 
+    <div class="worked-example">
+      <h4>Why You See an Afterimage: Opponent-Process in Action</h4>
+      <p>Stare at a red square for 30 seconds, then look at a white wall. You see a green afterimage. Here is why.</p>
+      <div class="step-box"><span class="step-label">During Staring</span>The red-sensitive opponent cells are firing intensely and begin to fatigue.</div>
+      <div class="step-box"><span class="step-label">After Looking Away</span>The fatigued red cells go quiet. Their opponent partner &mdash; the green side &mdash; is now unopposed and fires strongly.</div>
+      <div class="step-box"><span class="step-label">What You Perceive</span>The dominant green signal is interpreted as a green afterimage on the white wall.</div>
+      <div class="step-box"><span class="step-label">Why Trichromatic Theory Alone Cannot Explain This</span>The trichromatic theory describes the three cone types in the retina, but afterimages arise from opponent processing further along the visual pathway in the LGN. You need both theories together.</div>
+    </div>
+
     <h3>Hearing</h3>
     <p>Sound waves enter the ear canal, vibrate the tympanic membrane (eardrum), which transmits vibrations through the ossicles (hammer, anvil, stirrup) to the oval window. This creates waves in the cochlear fluid that bend hair cells on the basilar membrane, converting mechanical energy to neural signals. These travel via the auditory nerve to the auditory cortex in the temporal lobe.</p>
-
     <p>Place theory explains perception of high-frequency sounds (different locations on the basilar membrane). Frequency theory explains low-frequency sounds (neurons fire at the same rate as the sound wave). The volley principle extends frequency theory to moderate frequencies.</p>
 
     <h3>Gestalt Principles of Perception</h3>
     <table class="fact-table">
-      <tr><th>Principle</th><th>Description</th></tr>
+      <caption class="sr-only">Gestalt principles and descriptions</caption>
+      <tr><th scope="col">Principle</th><th scope="col">Description</th></tr>
       <tr><td>Figure-ground</td><td>We organize stimuli into a foreground figure and background</td></tr>
       <tr><td>Proximity</td><td>Objects near each other are grouped together</td></tr>
       <tr><td>Similarity</td><td>Similar objects are grouped together</td></tr>
@@ -309,10 +314,10 @@
       <strong>Top-down vs. Bottom-up processing:</strong> Bottom-up processing builds perception from raw sensory data (data-driven). Top-down processing uses expectations, knowledge, and context to interpret stimuli (conceptually-driven). Most perception involves both simultaneously.
     </div>
   </div>
-</div>
+</section>
 
-<!-- ===== SECTION 03: LEARNING & CONDITIONING ===== -->
-<div class="section">
+<!-- ===== SECTION 03 ===== -->
+<section class="section">
   <span class="section-anchor" id="s03"></span>
   <div class="card">
     <h2><span class="num">03</span> Learning &amp; Conditioning</h2>
@@ -322,13 +327,24 @@
     <p>An organism learns to associate two stimuli so that one comes to elicit a response originally caused only by the other. Before conditioning, the unconditioned stimulus (US) naturally produces the unconditioned response (UR). A neutral stimulus (NS) produces no relevant response. After repeated pairing of the NS with the US, the NS becomes a conditioned stimulus (CS) that produces a conditioned response (CR).</p>
 
     <div class="formula-box">
-      Before: US (food) &rarr; UR (salivation) | NS (bell) &rarr; no response<br>
-      During: NS (bell) + US (food) &rarr; UR (salivation)<br>
-      After:  CS (bell) &rarr; CR (salivation)
+      Before: US (food) <span aria-hidden="true">&rarr;</span> UR (salivation) | NS (bell) <span aria-hidden="true">&rarr;</span> no response<br>
+      During: NS (bell) + US (food) <span aria-hidden="true">&rarr;</span> UR (salivation)<br>
+      After: CS (bell) <span aria-hidden="true">&rarr;</span> CR (salivation)
+    </div>
+
+    <div class="worked-example">
+      <h4>Classical Conditioning in Real Life: Fear of Dentists</h4>
+      <p>Many people develop a fear of dentists they did not have as small children. Here is exactly how that happens using conditioning terms.</p>
+      <div class="step-box"><span class="step-label">Before Conditioning</span>The dental drill (NS) means nothing emotionally. Pain (US) naturally causes fear/anxiety (UR).</div>
+      <div class="step-box"><span class="step-label">Conditioning Trial</span>At the dentist, the drill sound (NS) is repeatedly paired with pain (US), producing fear (UR).</div>
+      <div class="step-box"><span class="step-label">After Conditioning</span>Now the drill sound alone (CS) triggers fear and anxiety (CR) even before any pain occurs. The patient feels anxious just hearing the drill spin up.</div>
+      <div class="step-box"><span class="step-label">Generalization</span>The fear generalizes: now the smell of the office, the white coat, even the building itself triggers anxiety.</div>
+      <div class="step-box"><span class="step-label">Treatment via Extinction</span>A therapist might use systematic desensitization: gradual, repeated exposure to drill sounds without pain until the CR weakens and disappears.</div>
     </div>
 
     <table class="fact-table">
-      <tr><th>Term</th><th>Definition</th></tr>
+      <caption class="sr-only">Classical conditioning terms and definitions</caption>
+      <tr><th scope="col">Term</th><th scope="col">Definition</th></tr>
       <tr><td>Acquisition</td><td>Initial learning of the CS-US association</td></tr>
       <tr><td>Extinction</td><td>CR weakens when CS is presented without US</td></tr>
       <tr><td>Spontaneous recovery</td><td>Reappearance of extinguished CR after a rest period</td></tr>
@@ -341,7 +357,8 @@
     <p>Behavior is shaped by its consequences. Reinforcement increases the likelihood of a behavior; punishment decreases it. "Positive" means adding a stimulus; "negative" means removing one.</p>
 
     <table class="fact-table">
-      <tr><th>Type</th><th>Action</th><th>Effect on Behavior</th><th>Example</th></tr>
+      <caption class="sr-only">Types of operant conditioning with examples</caption>
+      <tr><th scope="col">Type</th><th scope="col">Action</th><th scope="col">Effect on Behavior</th><th scope="col">Example</th></tr>
       <tr><td>Positive reinforcement</td><td>Add pleasant stimulus</td><td>Increases</td><td>Giving a treat for good grades</td></tr>
       <tr><td>Negative reinforcement</td><td>Remove aversive stimulus</td><td>Increases</td><td>Seatbelt buzzer stops when buckled</td></tr>
       <tr><td>Positive punishment</td><td>Add aversive stimulus</td><td>Decreases</td><td>Spanking after misbehavior</td></tr>
@@ -353,9 +370,18 @@
       Think of "positive" as <strong>adding (+)</strong> and "negative" as <strong>subtracting (-)</strong>. "Reinforcement" always <strong>strengthens</strong> behavior. "Punishment" always <strong>weakens</strong> behavior.
     </div>
 
+    <div class="worked-example">
+      <h4>Negative Reinforcement vs. Punishment: The Confusion Ends Here</h4>
+      <p>The word "negative" makes students assume this is bad or painful. It is not. Negative means <em>removal</em>.</p>
+      <div class="step-box"><span class="step-label">Negative Reinforcement Example</span>You have a pounding headache (unpleasant stimulus). You take ibuprofen and the headache goes away. Because removing the pain followed taking the pill, you are more likely to take ibuprofen next time. Behavior (taking pill) INCREASED because something bad was REMOVED. That is negative reinforcement.</div>
+      <div class="step-box"><span class="step-label">Positive Punishment Example</span>A student talks in class (behavior). Teacher assigns extra homework (add unpleasant thing). Student talks less. Behavior DECREASED because something bad was ADDED. That is positive punishment.</div>
+      <div class="step-box"><span class="step-label">The Quick Test</span>Ask two questions: (1) Did the behavior increase or decrease? Increase = reinforcement, decrease = punishment. (2) Was something added or removed? Added = positive, removed = negative. You cannot get it wrong with this method.</div>
+    </div>
+
     <h3>Schedules of Reinforcement</h3>
     <table class="fact-table">
-      <tr><th>Schedule</th><th>Rule</th><th>Response Rate</th><th>Resistance to Extinction</th></tr>
+      <caption class="sr-only">Reinforcement schedules, rules, response rates, and resistance to extinction</caption>
+      <tr><th scope="col">Schedule</th><th scope="col">Rule</th><th scope="col">Response Rate</th><th scope="col">Resistance to Extinction</th></tr>
       <tr><td>Continuous</td><td>Reinforce every response</td><td>Moderate</td><td>Low (extinguishes fast)</td></tr>
       <tr><td>Fixed-ratio (FR)</td><td>After set number of responses</td><td>High with post-reinforcement pause</td><td>Moderate</td></tr>
       <tr><td>Variable-ratio (VR)</td><td>After unpredictable number</td><td>Highest, steady</td><td>Highest (slot machines)</td></tr>
@@ -371,10 +397,10 @@
       <strong>Learned helplessness (Seligman):</strong> When organisms learn that they cannot control outcomes, they stop trying even when escape becomes possible. This has been linked to depression and passivity.
     </div>
   </div>
-</div>
+</section>
 
-<!-- ===== SECTION 04: MEMORY ===== -->
-<div class="section">
+<!-- ===== SECTION 04 ===== -->
+<section class="section">
   <span class="section-anchor" id="s04"></span>
   <div class="card">
     <h2><span class="num">04</span> Memory</h2>
@@ -382,15 +408,25 @@
 
     <h3>Atkinson-Shiffrin Model (Multi-Store)</h3>
     <div class="formula-box">
-      Sensory Memory &rarr; (attention) &rarr; Short-Term Memory &rarr; (encoding/rehearsal) &rarr; Long-Term Memory
+      Sensory Memory <span aria-hidden="true">&rarr;</span> (attention) <span aria-hidden="true">&rarr;</span> Short-Term Memory <span aria-hidden="true">&rarr;</span> (encoding/rehearsal) <span aria-hidden="true">&rarr;</span> Long-Term Memory
     </div>
 
     <table class="fact-table">
-      <tr><th>Store</th><th>Capacity</th><th>Duration</th><th>Key Facts</th></tr>
+      <caption class="sr-only">Memory store types, capacity, duration, and key facts</caption>
+      <tr><th scope="col">Store</th><th scope="col">Capacity</th><th scope="col">Duration</th><th scope="col">Key Facts</th></tr>
       <tr><td>Sensory memory</td><td>Large (all input)</td><td>Iconic: ~0.5 sec; Echoic: ~3-4 sec</td><td>Brief buffer; iconic = visual, echoic = auditory</td></tr>
       <tr><td>Short-term / Working memory</td><td>7 &plusmn; 2 items (Miller)</td><td>~20-30 seconds without rehearsal</td><td>Chunking increases effective capacity</td></tr>
       <tr><td>Long-term memory</td><td>Essentially unlimited</td><td>Potentially permanent</td><td>Requires elaborative rehearsal for best encoding</td></tr>
     </table>
+
+    <div class="worked-example">
+      <h4>Why Cramming Fails: The Memory Model in Action</h4>
+      <p>You study for four hours the night before an exam and feel confident. Three days later, most of it is gone. Here is the memory science behind why.</p>
+      <div class="step-box"><span class="step-label">What Cramming Does</span>Information moves from sensory memory into short-term memory through attention. But massed practice (cramming) relies on maintenance rehearsal &mdash; just repeating things over and over. This keeps information in STM but does not strongly encode it into long-term memory.</div>
+      <div class="step-box"><span class="step-label">The Encoding Problem</span>Long-term memory consolidation requires elaborative rehearsal &mdash; connecting new information to what you already know. Cramming rarely achieves this depth of processing (Craik and Lockhart).</div>
+      <div class="step-box"><span class="step-label">The Spacing Effect</span>Multiple shorter sessions spread over days are dramatically more effective. Each session reactivates the memory trace, strengthening the long-term storage pathway.</div>
+      <div class="step-box"><span class="step-label">The Fix</span>Study for 45 minutes today, review for 20 minutes tomorrow, and do a brief recall test in three days. You will retain far more than four straight hours the night before.</div>
+    </div>
 
     <h3>Types of Long-Term Memory</h3>
     <p>Explicit (declarative) memory involves conscious recall and divides into episodic memory (personal events and experiences) and semantic memory (general knowledge and facts). Implicit (nondeclarative) memory operates without conscious awareness and includes procedural memory (motor skills and habits), classical conditioning effects, and priming.</p>
@@ -402,7 +438,8 @@
 
     <h3>Encoding Strategies</h3>
     <table class="fact-table">
-      <tr><th>Strategy</th><th>Description</th></tr>
+      <caption class="sr-only">Memory encoding strategies and descriptions</caption>
+      <tr><th scope="col">Strategy</th><th scope="col">Description</th></tr>
       <tr><td>Elaborative rehearsal</td><td>Connecting new info to existing knowledge (deep processing)</td></tr>
       <tr><td>Levels of processing (Craik &amp; Lockhart)</td><td>Deeper semantic processing = better memory than shallow structural/phonemic</td></tr>
       <tr><td>Self-reference effect</td><td>Information related to oneself is better remembered</td></tr>
@@ -413,7 +450,8 @@
 
     <h3>Forgetting</h3>
     <table class="fact-table">
-      <tr><th>Type</th><th>Explanation</th></tr>
+      <caption class="sr-only">Types of forgetting and explanations</caption>
+      <tr><th scope="col">Type</th><th scope="col">Explanation</th></tr>
       <tr><td>Encoding failure</td><td>Information was never properly encoded</td></tr>
       <tr><td>Storage decay</td><td>Memory trace fades over time (Ebbinghaus forgetting curve)</td></tr>
       <tr><td>Retrieval failure</td><td>Information exists but cannot be accessed (tip-of-the-tongue)</td></tr>
@@ -427,10 +465,10 @@
       <strong>Context-dependent memory:</strong> Recall is better when the retrieval environment matches the encoding environment. <strong>State-dependent memory:</strong> Recall is better when internal state (mood, substance) at retrieval matches encoding. <strong>Mood-congruent memory:</strong> We more easily recall memories consistent with our current mood.
     </div>
   </div>
-</div>
+</section>
 
-<!-- ===== SECTION 05: COGNITION & LANGUAGE ===== -->
-<div class="section">
+<!-- ===== SECTION 05 ===== -->
+<section class="section">
   <span class="section-anchor" id="s05"></span>
   <div class="card">
     <h2><span class="num">05</span> Cognition &amp; Language</h2>
@@ -438,7 +476,8 @@
 
     <h3>Problem Solving</h3>
     <table class="fact-table">
-      <tr><th>Concept</th><th>Definition</th></tr>
+      <caption class="sr-only">Problem solving concepts and definitions</caption>
+      <tr><th scope="col">Concept</th><th scope="col">Definition</th></tr>
       <tr><td>Algorithm</td><td>Step-by-step procedure that guarantees a solution (slow but reliable)</td></tr>
       <tr><td>Heuristic</td><td>Mental shortcut; faster but error-prone</td></tr>
       <tr><td>Insight</td><td>Sudden "aha!" realization of a solution</td></tr>
@@ -449,7 +488,8 @@
 
     <h3>Judgment &amp; Decision Making Biases</h3>
     <table class="fact-table">
-      <tr><th>Bias / Heuristic</th><th>Description</th></tr>
+      <caption class="sr-only">Cognitive biases and heuristics with descriptions</caption>
+      <tr><th scope="col">Bias / Heuristic</th><th scope="col">Description</th></tr>
       <tr><td>Availability heuristic</td><td>Judging likelihood by how easily examples come to mind</td></tr>
       <tr><td>Representativeness heuristic</td><td>Judging likelihood by how well something matches a prototype</td></tr>
       <tr><td>Anchoring bias</td><td>Over-relying on the first piece of information encountered</td></tr>
@@ -459,6 +499,14 @@
       <tr><td>Belief perseverance</td><td>Clinging to beliefs even when evidence contradicts them</td></tr>
       <tr><td>Hindsight bias</td><td>"I knew it all along" after learning an outcome</td></tr>
     </table>
+
+    <div class="worked-example">
+      <h4>Availability Heuristic: Why You Fear Plane Crashes More Than Car Crashes</h4>
+      <p>Flying is statistically far safer than driving, yet many people fear it more. The availability heuristic explains why.</p>
+      <div class="step-box"><span class="step-label">The Heuristic at Work</span>When you judge how dangerous flying is, your brain asks: "How easily can I picture a plane crash?" Plane crashes dominate news coverage, are dramatic, and are easy to vividly imagine. Car accidents, though far more deadly in total, are routine and receive little media attention.</div>
+      <div class="step-box"><span class="step-label">The Error</span>Ease of recall gets mistaken for probability. Because plane crashes are vivid and memorable, the brain inflates their likelihood. Because car crashes are forgettable, the brain deflates their likelihood.</div>
+      <div class="step-box"><span class="step-label">The Correction</span>Look at base rates (actual statistics). Per mile traveled, flying is about 50 times safer than driving in the US. Logic overrides the heuristic when you consult real data.</div>
+    </div>
 
     <h3>Language</h3>
     <p>Language has structure at multiple levels: phonemes (smallest sound units), morphemes (smallest meaningful units), syntax (grammatical rules), and semantics (meaning). Noam Chomsky proposed the language acquisition device (LAD), an innate biological capacity for language, and distinguished between surface structure (how a sentence is worded) and deep structure (its underlying meaning). The critical period for language acquisition is roughly before puberty.</p>
@@ -470,20 +518,20 @@
 
     <h3>Intelligence</h3>
     <p>Spearman proposed general intelligence (g factor). Gardner proposed multiple intelligences (linguistic, logical-mathematical, spatial, musical, bodily-kinesthetic, interpersonal, intrapersonal, naturalistic). Sternberg's triarchic theory includes analytical, creative, and practical intelligence. Emotional intelligence (Salovey and Mayer, popularized by Goleman) involves perceiving, understanding, managing, and using emotions.</p>
-
     <p>IQ tests: the Stanford-Binet and Wechsler scales are most common. A reliable test gives consistent scores; a valid test measures what it claims to measure. IQ scores follow a normal distribution with mean 100 and standard deviation 15.</p>
   </div>
-</div>
+</section>
 
-<!-- ===== SECTION 06: MOTIVATION & EMOTION ===== -->
-<div class="section">
+<!-- ===== SECTION 06 ===== -->
+<section class="section">
   <span class="section-anchor" id="s06"></span>
   <div class="card">
     <h2><span class="num">06</span> Motivation &amp; Emotion</h2>
 
     <h3>Theories of Motivation</h3>
     <table class="fact-table">
-      <tr><th>Theory</th><th>Core Idea</th></tr>
+      <caption class="sr-only">Theories of motivation and their core ideas</caption>
+      <tr><th scope="col">Theory</th><th scope="col">Core Idea</th></tr>
       <tr><td>Instinct theory</td><td>Behavior driven by innate, fixed patterns (largely replaced)</td></tr>
       <tr><td>Drive-reduction theory (Hull)</td><td>Physiological needs create drives; behavior reduces the drive to restore homeostasis</td></tr>
       <tr><td>Arousal theory</td><td>We seek an optimal level of arousal (Yerkes-Dodson law: moderate arousal = best performance)</td></tr>
@@ -493,7 +541,7 @@
 
     <h3>Maslow's Hierarchy of Needs</h3>
     <div class="formula-box">
-      Bottom to top: Physiological &rarr; Safety &rarr; Love/Belonging &rarr; Esteem &rarr; Self-actualization
+      Bottom to top: Physiological <span aria-hidden="true">&rarr;</span> Safety <span aria-hidden="true">&rarr;</span> Love/Belonging <span aria-hidden="true">&rarr;</span> Esteem <span aria-hidden="true">&rarr;</span> Self-actualization
     </div>
     <p>Lower needs must generally be met before higher needs become motivating. Self-actualization is the desire to fulfill one's potential. Maslow later added self-transcendence above self-actualization.</p>
 
@@ -504,23 +552,33 @@
 
     <h3>Theories of Emotion</h3>
     <table class="fact-table">
-      <tr><th>Theory</th><th>Sequence</th><th>Key Idea</th></tr>
-      <tr><td>James-Lange</td><td>Event &rarr; Physiological arousal &rarr; Emotion</td><td>We feel emotions BECAUSE of body changes</td></tr>
-      <tr><td>Cannon-Bard</td><td>Event &rarr; Arousal AND emotion simultaneously</td><td>Body response and emotion happen at the same time</td></tr>
-      <tr><td>Schachter-Singer (Two-Factor)</td><td>Event &rarr; Arousal + Cognitive label &rarr; Emotion</td><td>We interpret arousal based on context</td></tr>
-      <tr><td>Lazarus (Cognitive Appraisal)</td><td>Event &rarr; Appraisal &rarr; Emotion + Arousal</td><td>Thought/appraisal MUST come before emotion</td></tr>
+      <caption class="sr-only">Emotion theories, their sequences, and key ideas</caption>
+      <tr><th scope="col">Theory</th><th scope="col">Sequence</th><th scope="col">Key Idea</th></tr>
+      <tr><td>James-Lange</td><td>Event <span aria-hidden="true">&rarr;</span> Physiological arousal <span aria-hidden="true">&rarr;</span> Emotion</td><td>We feel emotions BECAUSE of body changes</td></tr>
+      <tr><td>Cannon-Bard</td><td>Event <span aria-hidden="true">&rarr;</span> Arousal AND emotion simultaneously</td><td>Body response and emotion happen at the same time</td></tr>
+      <tr><td>Schachter-Singer (Two-Factor)</td><td>Event <span aria-hidden="true">&rarr;</span> Arousal + Cognitive label <span aria-hidden="true">&rarr;</span> Emotion</td><td>We interpret arousal based on context</td></tr>
+      <tr><td>Lazarus (Cognitive Appraisal)</td><td>Event <span aria-hidden="true">&rarr;</span> Appraisal <span aria-hidden="true">&rarr;</span> Emotion + Arousal</td><td>Thought/appraisal MUST come before emotion</td></tr>
       <tr><td>Facial feedback hypothesis</td><td>Facial expressions influence emotional experience</td><td>Smiling can actually make you feel happier</td></tr>
     </table>
+
+    <div class="worked-example">
+      <h4>Four Theories of Emotion: Same Event, Four Different Stories</h4>
+      <p>You are walking alone at night and hear footsteps behind you. How do the four theories explain what you feel?</p>
+      <div class="step-box"><span class="step-label">James-Lange</span>Your heart pounds and you start to sweat (arousal first). You notice these body changes and interpret them as fear. "I'm trembling, therefore I must be afraid."</div>
+      <div class="step-box"><span class="step-label">Cannon-Bard</span>Your heart pounds AND you feel fear at exactly the same time, independently. The brain sends signals to both your body and your cortex simultaneously.</div>
+      <div class="step-box"><span class="step-label">Schachter-Singer (Two-Factor)</span>Your heart pounds (arousal). You look around for a context clue &mdash; dark alley, strange footsteps. You label this arousal "fear." If you were at a concert, the same pounding heart might be labeled "excitement."</div>
+      <div class="step-box"><span class="step-label">Lazarus (Cognitive Appraisal)</span>Before anything else, your brain quickly appraises: "Is this a threat?" That split-second cognitive judgment triggers both the emotion and the body response. Thought comes first.</div>
+    </div>
 
     <div class="highlight-box">
       <div class="label">Key Concept</div>
       <strong>Yerkes-Dodson Law:</strong> Performance increases with arousal up to a point, then declines. Simple tasks benefit from higher arousal; complex tasks perform best at moderate arousal levels.
     </div>
   </div>
-</div>
+</section>
 
-<!-- ===== SECTION 07: DEVELOPMENTAL PSYCHOLOGY ===== -->
-<div class="section">
+<!-- ===== SECTION 07 ===== -->
+<section class="section">
   <span class="section-anchor" id="s07"></span>
   <div class="card">
     <h2><span class="num">07</span> Developmental Psychology</h2>
@@ -528,7 +586,8 @@
 
     <h3>Piaget's Stages of Cognitive Development</h3>
     <table class="fact-table">
-      <tr><th>Stage</th><th>Ages</th><th>Key Features</th></tr>
+      <caption class="sr-only">Piaget's cognitive development stages with ages and key features</caption>
+      <tr><th scope="col">Stage</th><th scope="col">Ages</th><th scope="col">Key Features</th></tr>
       <tr><td>Sensorimotor</td><td>0-2 years</td><td>Object permanence, sensory exploration, stranger anxiety</td></tr>
       <tr><td>Preoperational</td><td>2-7 years</td><td>Symbolic thinking, egocentrism, centration, animism, lack of conservation</td></tr>
       <tr><td>Concrete operational</td><td>7-11 years</td><td>Conservation, logical thought about concrete events, reversibility, classification</td></tr>
@@ -540,9 +599,18 @@
       <strong>"Some People Can't Fly"</strong> = Sensorimotor, Preoperational, Concrete operational, Formal operational
     </div>
 
+    <div class="worked-example">
+      <h4>Conservation: The Classic Juice Cup Test</h4>
+      <p>A child watches you pour juice from a short wide glass into a tall thin glass. You ask: "Is there more juice now, the same, or less?" The answer depends on their Piagetian stage.</p>
+      <div class="step-box"><span class="step-label">Preoperational (ages 2-7): Fails the Task</span>The child says "more juice!" because the tall glass looks fuller. This is centration &mdash; the child focuses only on the height dimension and ignores width. They do not yet understand that quantity is conserved when appearance changes.</div>
+      <div class="step-box"><span class="step-label">Concrete Operational (ages 7-11): Passes the Task</span>The child says "same juice" and can explain why: "you just poured it, nothing was added or removed." They have mastered conservation and can apply reversibility (it could be poured back).</div>
+      <div class="step-box"><span class="step-label">Why This Matters for Exams</span>The key word is "conservation" = understanding that quantity stays constant despite changes in appearance. Mastery occurs at the start of the concrete operational stage, around age 7.</div>
+    </div>
+
     <h3>Erikson's Psychosocial Stages</h3>
     <table class="fact-table">
-      <tr><th>Stage</th><th>Age</th><th>Crisis</th><th>Virtue</th></tr>
+      <caption class="sr-only">Erikson's psychosocial stages, crises, and virtues</caption>
+      <tr><th scope="col">Stage</th><th scope="col">Age</th><th scope="col">Crisis</th><th scope="col">Virtue</th></tr>
       <tr><td>Infancy</td><td>0-1</td><td>Trust vs. Mistrust</td><td>Hope</td></tr>
       <tr><td>Toddlerhood</td><td>1-3</td><td>Autonomy vs. Shame/Doubt</td><td>Will</td></tr>
       <tr><td>Preschool</td><td>3-6</td><td>Initiative vs. Guilt</td><td>Purpose</td></tr>
@@ -555,7 +623,8 @@
 
     <h3>Kohlberg's Moral Development</h3>
     <table class="fact-table">
-      <tr><th>Level</th><th>Stage</th><th>Reasoning Basis</th></tr>
+      <caption class="sr-only">Kohlberg's moral development levels and stages</caption>
+      <tr><th scope="col">Level</th><th scope="col">Stage</th><th scope="col">Reasoning Basis</th></tr>
       <tr><td>Preconventional</td><td>1. Obedience/Punishment</td><td>"Will I get in trouble?"</td></tr>
       <tr><td></td><td>2. Self-interest/Exchange</td><td>"What's in it for me?"</td></tr>
       <tr><td>Conventional</td><td>3. Good boy/girl</td><td>"Will people approve of me?"</td></tr>
@@ -572,10 +641,10 @@
       <strong>Vygotsky's Zone of Proximal Development (ZPD):</strong> The gap between what a learner can do alone and what they can do with guidance. Scaffolding provides support that is gradually removed as the learner becomes competent.
     </div>
   </div>
-</div>
+</section>
 
-<!-- ===== SECTION 08: PERSONALITY ===== -->
-<div class="section">
+<!-- ===== SECTION 08 ===== -->
+<section class="section">
   <span class="section-anchor" id="s08"></span>
   <div class="card">
     <h2><span class="num">08</span> Personality</h2>
@@ -586,7 +655,8 @@
 
     <h3>Defense Mechanisms</h3>
     <table class="fact-table">
-      <tr><th>Mechanism</th><th>Description</th><th>Example</th></tr>
+      <caption class="sr-only">Defense mechanisms, descriptions, and examples</caption>
+      <tr><th scope="col">Mechanism</th><th scope="col">Description</th><th scope="col">Example</th></tr>
       <tr><td>Repression</td><td>Pushing threatening thoughts into the unconscious</td><td>Forgetting a traumatic event</td></tr>
       <tr><td>Denial</td><td>Refusing to accept reality</td><td>Alcoholic insists they don't have a problem</td></tr>
       <tr><td>Projection</td><td>Attributing own unacceptable feelings to others</td><td>Unfaithful spouse accuses partner of cheating</td></tr>
@@ -596,6 +666,16 @@
       <tr><td>Regression</td><td>Reverting to earlier developmental behavior</td><td>Adult throwing a tantrum</td></tr>
       <tr><td>Reaction formation</td><td>Behaving opposite to true feelings</td><td>Being overly nice to someone you dislike</td></tr>
     </table>
+
+    <div class="worked-example">
+      <h4>Spotting Defense Mechanisms in a Scenario</h4>
+      <p>A student fails an important exam. Watch how several defense mechanisms could appear in their response.</p>
+      <div class="step-box"><span class="step-label">Denial</span>"I didn't fail. The professor must have made a grading mistake." Refuses to acknowledge the reality of the poor grade.</div>
+      <div class="step-box"><span class="step-label">Rationalization</span>"That class was a waste of time anyway. It's not even relevant to my major." Creates a logical-sounding reason to feel okay about the failure.</div>
+      <div class="step-box"><span class="step-label">Projection</span>"The other students must have cheated. Nobody could pass that exam honestly." Transfers the student's own sense of inadequacy onto others.</div>
+      <div class="step-box"><span class="step-label">Displacement</span>Goes home and snaps at their roommate. Redirects frustration to a safer target than the professor.</div>
+      <div class="step-box"><span class="step-label">Sublimation</span>Channels the frustration into intense studying and earns the highest grade in the class on the next exam. This is considered the healthiest defense mechanism.</div>
+    </div>
 
     <h3>Humanistic Perspective</h3>
     <p>Carl Rogers emphasized unconditional positive regard, the need for congruence between the real self and ideal self, and a person-centered approach. Maslow's hierarchy of needs culminates in self-actualization. This perspective focuses on free will, personal growth, and subjective experience.</p>
@@ -611,10 +691,10 @@
     <h3>Social-Cognitive Perspective (Bandura)</h3>
     <p>Reciprocal determinism describes the interaction among behavior, personal factors (thoughts, feelings), and environmental factors. Self-efficacy is one's belief in their ability to succeed at a task, and it strongly predicts behavior and outcomes. An internal locus of control (belief that you control your fate) is associated with greater achievement and well-being than an external locus of control (belief that outside forces control your fate).</p>
   </div>
-</div>
+</section>
 
-<!-- ===== SECTION 09: PSYCHOLOGICAL DISORDERS ===== -->
-<div class="section">
+<!-- ===== SECTION 09 ===== -->
+<section class="section">
   <span class="section-anchor" id="s09"></span>
   <div class="card">
     <h2><span class="num">09</span> Psychological Disorders</h2>
@@ -622,7 +702,8 @@
 
     <h3>Major Disorder Categories</h3>
     <table class="fact-table">
-      <tr><th>Disorder</th><th>Key Features</th><th>Notable Details</th></tr>
+      <caption class="sr-only">Psychological disorders, key features, and notable details</caption>
+      <tr><th scope="col">Disorder</th><th scope="col">Key Features</th><th scope="col">Notable Details</th></tr>
       <tr><td>Generalized Anxiety Disorder</td><td>Persistent, excessive worry about many things</td><td>At least 6 months; muscle tension, restlessness, fatigue</td></tr>
       <tr><td>Panic Disorder</td><td>Recurrent, unexpected panic attacks</td><td>Intense fear with physical symptoms (heart racing, shortness of breath)</td></tr>
       <tr><td>Phobias</td><td>Intense, irrational fear of specific object/situation</td><td>Social phobia (social anxiety), agoraphobia, specific phobias</td></tr>
@@ -641,9 +722,18 @@
       <strong>Schizophrenia neurotransmitter hypothesis:</strong> The dopamine hypothesis suggests that overactivity of dopamine is associated with positive symptoms. Newer research also implicates glutamate dysfunction. Structural changes include enlarged ventricles and reduced cortical volume.
     </div>
 
+    <div class="worked-example">
+      <h4>Positive vs. Negative Symptoms of Schizophrenia: A Scenario</h4>
+      <p>The words "positive" and "negative" do not mean good and bad. They mean present/added versus absent/reduced. Here is a patient scenario to make this concrete.</p>
+      <div class="step-box"><span class="step-label">Positive Symptoms (Things Added)</span>The patient hears voices commenting on their actions (auditory hallucinations). They believe the government has implanted a chip in their brain (delusion of persecution). Their speech jumps between unrelated ideas (disorganized thinking). These are called "positive" because they are things present that should not be there.</div>
+      <div class="step-box"><span class="step-label">Negative Symptoms (Things Removed)</span>The patient speaks in a flat, emotionless tone (flat affect). They stop going out, stop calling friends, and stay in bed most of the day (social withdrawal). They have no interest in activities they used to enjoy (anhedonia). These are called "negative" because they are things absent that should be there.</div>
+      <div class="step-box"><span class="step-label">Treatment Implication</span>Antipsychotic drugs (dopamine blockers) treat positive symptoms fairly well. Negative symptoms are harder to treat and often persist, significantly affecting quality of life.</div>
+    </div>
+
     <h3>Therapy Approaches</h3>
     <table class="fact-table">
-      <tr><th>Approach</th><th>Method</th><th>Key Techniques</th></tr>
+      <caption class="sr-only">Therapy approaches, methods, and key techniques</caption>
+      <tr><th scope="col">Approach</th><th scope="col">Method</th><th scope="col">Key Techniques</th></tr>
       <tr><td>Psychoanalytic</td><td>Explore unconscious conflicts</td><td>Free association, dream analysis, transference</td></tr>
       <tr><td>Humanistic (Rogers)</td><td>Client-centered, supportive environment</td><td>Active listening, unconditional positive regard, empathy</td></tr>
       <tr><td>Behavioral</td><td>Change maladaptive behaviors</td><td>Systematic desensitization, aversion therapy, token economy</td></tr>
@@ -652,10 +742,10 @@
       <tr><td>Biomedical</td><td>Alter brain chemistry/function</td><td>SSRIs, antipsychotics, mood stabilizers, ECT</td></tr>
     </table>
   </div>
-</div>
+</section>
 
-<!-- ===== SECTION 10: SOCIAL PSYCHOLOGY ===== -->
-<div class="section">
+<!-- ===== SECTION 10 ===== -->
+<section class="section">
   <span class="section-anchor" id="s10"></span>
   <div class="card">
     <h2><span class="num">10</span> Social Psychology</h2>
@@ -664,12 +754,22 @@
     <h3>Attribution Theory</h3>
     <p>We explain others' behavior using dispositional attributions (internal traits) or situational attributions (external circumstances). The fundamental attribution error (FAE) is our tendency to overattribute others' behavior to disposition while underestimating situational factors. The self-serving bias leads us to attribute our successes to internal factors and failures to external factors.</p>
 
+    <div class="worked-example">
+      <h4>The Fundamental Attribution Error in a Campus Scenario</h4>
+      <p>You are walking across campus and a fellow student bumps into you and does not apologize. What do you think?</p>
+      <div class="step-box"><span class="step-label">The FAE Response (Most People's First Reaction)</span>"What a rude person. They must be arrogant and selfish." You jump to a character (dispositional) explanation automatically.</div>
+      <div class="step-box"><span class="step-label">What You Likely Ignored</span>The student just got a call that a family member is in the hospital. They are in a complete panic. The situation explains the behavior perfectly, but you never knew about it.</div>
+      <div class="step-box"><span class="step-label">The Asymmetry</span>If YOU bumped into someone while distracted, you would think "I was distracted, it was an accident" (situational). But you judge the other person's identical behavior as a character flaw. This asymmetry is the actor-observer effect layered on top of the FAE.</div>
+      <div class="step-box"><span class="step-label">Reducing the Error</span>Ask yourself: "What might the situation be?" This single habit dramatically reduces the FAE and tends to make people more empathetic and accurate in their social judgments.</div>
+    </div>
+
     <h3>Attitudes &amp; Persuasion</h3>
     <p>Cognitive dissonance (Festinger) occurs when our behavior conflicts with our attitudes, creating psychological discomfort that motivates attitude change. The foot-in-the-door technique (small request first, then larger) and door-in-the-face technique (large request first, then smaller) exploit this. The elaboration likelihood model distinguishes central route (careful analysis of arguments) from peripheral route (superficial cues like attractiveness).</p>
 
     <h3>Conformity, Obedience &amp; Group Behavior</h3>
     <table class="fact-table">
-      <tr><th>Concept</th><th>Researcher</th><th>Key Finding</th></tr>
+      <caption class="sr-only">Social influence concepts, researchers, and key findings</caption>
+      <tr><th scope="col">Concept</th><th scope="col">Researcher</th><th scope="col">Key Finding</th></tr>
       <tr><td>Conformity</td><td>Asch</td><td>People conform to group answers on line-judgment tasks even when obviously wrong (~37% conformed)</td></tr>
       <tr><td>Obedience</td><td>Milgram</td><td>~65% administered maximum "shocks" when instructed by authority figure</td></tr>
       <tr><td>Stanford Prison Experiment</td><td>Zimbardo</td><td>Normal people adopted cruel guard roles; demonstrates power of situational forces</td></tr>
@@ -691,10 +791,10 @@
       <strong>Contact hypothesis (Allport):</strong> Prejudice can be reduced when groups interact under conditions of equal status, common goals, intergroup cooperation, and support from authorities.
     </div>
   </div>
-</div>
+</section>
 
-<!-- ===== SECTION 11: RESEARCH METHODS & STATISTICS ===== -->
-<div class="section">
+<!-- ===== SECTION 11 ===== -->
+<section class="section">
   <span class="section-anchor" id="s11"></span>
   <div class="card">
     <h2><span class="num">11</span> Research Methods &amp; Statistics</h2>
@@ -702,7 +802,8 @@
 
     <h3>Research Methods</h3>
     <table class="fact-table">
-      <tr><th>Method</th><th>Description</th><th>Strength</th><th>Limitation</th></tr>
+      <caption class="sr-only">Research methods with descriptions, strengths, and limitations</caption>
+      <tr><th scope="col">Method</th><th scope="col">Description</th><th scope="col">Strength</th><th scope="col">Limitation</th></tr>
       <tr><td>Experiment</td><td>Manipulate IV, measure DV, control confounds</td><td>Can establish causation</td><td>Artificial setting; ethical limits</td></tr>
       <tr><td>Correlational study</td><td>Measure relationship between variables</td><td>Can study naturally occurring variables</td><td>Cannot establish causation</td></tr>
       <tr><td>Survey</td><td>Self-report questionnaires/interviews</td><td>Efficient for large samples</td><td>Response bias, social desirability</td></tr>
@@ -714,7 +815,8 @@
 
     <h3>Experimental Design Essentials</h3>
     <table class="fact-table">
-      <tr><th>Term</th><th>Definition</th></tr>
+      <caption class="sr-only">Experimental design terms and definitions</caption>
+      <tr><th scope="col">Term</th><th scope="col">Definition</th></tr>
       <tr><td>Independent variable (IV)</td><td>The variable manipulated by the researcher</td></tr>
       <tr><td>Dependent variable (DV)</td><td>The variable measured as the outcome</td></tr>
       <tr><td>Confounding variable</td><td>An uncontrolled variable that may influence the DV</td></tr>
@@ -732,18 +834,28 @@
       <strong>Random assignment vs. random sampling:</strong> Random <em>assignment</em> controls for confounds (internal validity). Random <em>sampling</em> allows generalization (external validity). They serve different purposes.
     </div>
 
+    <div class="worked-example">
+      <h4>Designing a Study: Correlation vs. Experiment</h4>
+      <p>A researcher wants to know whether listening to music while studying improves exam scores. Let's design both a correlational study and an experiment and see why only one can prove causation.</p>
+      <div class="step-box"><span class="step-label">Correlational Approach</span>Survey 200 students: "Do you listen to music while studying?" Then compare their GPA. Result: music listeners have higher GPAs. Conclusion you CAN draw: music-listening and GPA are positively correlated.</div>
+      <div class="step-box"><span class="step-label">Why Correlation Cannot Show Causation Here</span>Maybe students who are more motivated (a third variable) both study with music AND get better grades. The music itself may have nothing to do with it. You cannot tell from correlation alone.</div>
+      <div class="step-box"><span class="step-label">Experimental Approach</span>Take 100 students. Use random assignment to divide them into two groups. Group A studies with music; Group B studies in silence. Both groups take the same test. The only difference between groups is the IV (music vs. no music).</div>
+      <div class="step-box"><span class="step-label">Why the Experiment CAN Show Causation</span>Random assignment distributes motivation, intelligence, and all other variables equally across both groups. If Group A scores higher, music must be the reason &mdash; because everything else was controlled.</div>
+    </div>
+
     <h3>Basic Statistics</h3>
     <table class="fact-table">
-      <tr><th>Concept</th><th>Definition</th></tr>
+      <caption class="sr-only">Basic statistical concepts and definitions</caption>
+      <tr><th scope="col">Concept</th><th scope="col">Definition</th></tr>
       <tr><td>Mean</td><td>Arithmetic average</td></tr>
       <tr><td>Median</td><td>Middle score when ordered (resistant to outliers)</td></tr>
       <tr><td>Mode</td><td>Most frequent score</td></tr>
       <tr><td>Range</td><td>Highest minus lowest score</td></tr>
       <tr><td>Standard deviation</td><td>Average distance of scores from the mean</td></tr>
       <tr><td>Normal distribution</td><td>Symmetrical, bell-shaped curve; 68-95-99.7 rule</td></tr>
-      <tr><td>Skew</td><td>Positive skew = tail right (mean > median); Negative skew = tail left (mean < median)</td></tr>
+      <tr><td>Skew</td><td>Positive skew = tail right (mean &gt; median); Negative skew = tail left (mean &lt; median)</td></tr>
       <tr><td>Correlation coefficient (r)</td><td>-1 to +1; strength and direction of relationship</td></tr>
-      <tr><td>Statistical significance</td><td>p < .05 means results unlikely due to chance (less than 5% probability)</td></tr>
+      <tr><td>Statistical significance</td><td>p &lt; .05 means results unlikely due to chance (less than 5% probability)</td></tr>
     </table>
 
     <div class="highlight-box">
@@ -751,33 +863,40 @@
       <strong>Correlation does NOT equal causation.</strong> A correlation tells you two variables are related but not that one causes the other. There may be a third variable causing both, or the direction of causation may be reversed.
     </div>
   </div>
-</div>
+</section>
 
 <!-- ===== INTERACTIVE SECTION ===== -->
-<div class="section interactive">
+<section class="section interactive">
   <span class="section-anchor" id="interactive"></span>
-  <div class="tab-bar">
-    <button class="tab-btn active" onclick="showTab('quiz')">Multiple Choice Quiz</button>
-    <button class="tab-btn" onclick="showTab('flash')">Flashcards</button>
-    <button class="tab-btn" onclick="showTab('sa')">Short Answer Practice</button>
+  <div class="tab-bar" role="tablist" aria-label="Study tools">
+    <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="quiz-panel" id="tab-quiz" onclick="showTab('quiz',this)">Multiple Choice Quiz</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="flash-panel" id="tab-flash" onclick="showTab('flash',this)">Flashcards</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="sa-panel" id="tab-sa" onclick="showTab('sa',this)">Short Answer Practice</button>
   </div>
 
-  <!-- ===== QUIZ ===== -->
-  <div class="tab-panel active" id="quiz-panel">
-    <div class="quiz-progress" id="quiz-progress">Score: 0 / 0</div>
+  <!-- QUIZ -->
+  <div class="tab-panel active" id="quiz-panel" role="tabpanel" aria-labelledby="tab-quiz">
+    <div class="quiz-progress" id="quiz-progress" role="status" aria-live="polite">Score: 0 / 0</div>
     <div id="quiz-container"></div>
-    <div class="score-bar" id="quiz-final" style="display:none"></div>
+    <div class="score-bar" id="quiz-final" style="display:none" role="status"></div>
   </div>
 
-  <!-- ===== FLASHCARDS ===== -->
-  <div class="tab-panel" id="flash-panel">
-    <div class="fc-filters" id="fc-filters"></div>
-    <div class="fc-counter" id="fc-counter"></div>
+  <!-- FLASHCARDS -->
+  <div class="tab-panel" id="flash-panel" role="tabpanel" aria-labelledby="tab-flash">
+    <label for="fc-filter-select" class="sr-only">Filter flashcards by category</label>
+    <div class="fc-filters" id="fc-filters" role="group" aria-label="Filter flashcards by category"></div>
+    <div class="fc-counter" id="fc-counter" role="status" aria-live="polite"></div>
     <div class="fc-viewport">
-      <div class="fc-card" id="fc-card" onclick="flipCard()">
+      <div class="fc-card" id="fc-card"
+           role="button"
+           tabindex="0"
+           aria-label="Flashcard. Press Enter or Space to flip."
+           onclick="flipCard()"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();flipCard();}">
         <div class="fc-face fc-front">
           <div class="fc-cat" id="fc-cat"></div>
           <div class="fc-prompt" id="fc-prompt"></div>
+          <div style="font-size:.75rem;color:var(--text-muted);margin-top:1rem">Click or press Enter to reveal answer</div>
         </div>
         <div class="fc-face fc-back">
           <div class="fc-answer" id="fc-answer"></div>
@@ -785,17 +904,17 @@
       </div>
     </div>
     <div class="fc-nav">
-      <button onclick="fcNav(-1)">&larr; Prev</button>
-      <span class="fc-count" id="fc-count"></span>
-      <button onclick="fcNav(1)">Next &rarr;</button>
+      <button onclick="fcNav(-1)" aria-label="Previous flashcard">&larr; Prev</button>
+      <span class="fc-count" id="fc-count" aria-live="polite"></span>
+      <button onclick="fcNav(1)" aria-label="Next flashcard">Next &rarr;</button>
     </div>
   </div>
 
-  <!-- ===== SHORT ANSWER ===== -->
-  <div class="tab-panel" id="sa-panel">
+  <!-- SHORT ANSWER -->
+  <div class="tab-panel" id="sa-panel" role="tabpanel" aria-labelledby="tab-sa">
     <div id="sa-container"></div>
   </div>
-</div>
+</section>
 
 </main>
 
@@ -803,16 +922,34 @@
   <p>Psychology Fundamentals &mdash; Essential Study Reference</p>
 </footer>
 
+<div style="max-width:800px;margin:40px auto;padding:20px 30px;background:#fff8e1;border-left:4px solid #f9a825;border-radius:8px;font-size:14px;line-height:1.6;color:#555;">
+  <div style="font-weight:bold;font-size:15px;margin-bottom:10px;"><span aria-hidden="true">&#9888;&#65039;</span> Important Notice</div>
+  <p style="margin:0 0 10px 0;">These study resources are provided free of charge for educational purposes only. They are intended as supplemental study aids and should not be used as a substitute for your course textbooks, lecture materials, or the guidance of your instructors.</p>
+  <p style="margin:0 0 10px 0;">While every effort has been made to ensure accuracy, this content may contain errors, omissions, or information that is out of date. Always verify important facts and concepts against your official course materials.</p>
+  <p style="margin:0 0 10px 0;">No guarantees are made regarding the completeness, accuracy, or reliability of any information presented. Use at your own discretion.</p>
+  <p style="margin:0;">This resource is provided "as is" without warranty of any kind. The author assumes no liability for any errors or for any actions taken based on the information provided here.</p>
+</div>
+
 <script>
+// ===== LIVE ANNOUNCE HELPER =====
+function announce(msg){
+  var el=document.getElementById('live-announce');
+  el.textContent='';
+  setTimeout(function(){el.textContent=msg;},50);
+}
+
 // ===== TAB SYSTEM =====
-function showTab(id){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+function showTab(id, btn){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
   document.getElementById(id+'-panel').classList.add('active');
-  event.target.classList.add('active');
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
+  announce('Showing '+btn.textContent+' tab');
 }
 
 // ===== QUIZ DATA =====
+// NOTE: All arrow/symbol spans replaced with plain Unicode to prevent textContent rendering bugs
 const quizData=[
 {q:"What is the resting potential of a typical neuron?",opts:["About -70 mV","About -55 mV","About +30 mV","About 0 mV"],ans:0,exp:"The resting potential is approximately -70 mV due to the sodium-potassium pump maintaining more negative charge inside the cell."},
 {q:"Which neurotransmitter is most directly associated with Parkinson's disease when deficient?",opts:["Serotonin","Acetylcholine","Dopamine","GABA"],ans:2,exp:"Dopamine deficiency in the substantia nigra causes the motor symptoms of Parkinson's disease."},
@@ -824,7 +961,7 @@ const quizData=[
 {q:"Which schedule of reinforcement produces the HIGHEST resistance to extinction?",opts:["Continuous","Fixed-ratio","Variable-ratio","Fixed-interval"],ans:2,exp:"Variable-ratio schedules produce the highest resistance to extinction because the unpredictability keeps the organism responding."},
 {q:"According to Miller, the capacity of short-term memory is:",opts:["5 plus or minus 2 items","7 plus or minus 2 items","9 plus or minus 2 items","Unlimited"],ans:1,exp:"George Miller's famous finding: short-term memory holds approximately 7 plus or minus 2 items (chunks)."},
 {q:"Proactive interference occurs when:",opts:["New information disrupts old memories","Old information disrupts new learning","Information decays over time","Encoding was never completed"],ans:1,exp:"Proactive interference: previously learned (old) information interferes with the ability to remember new information. Think 'pro' = forward, old info reaching forward."},
-{q:"The availability heuristic leads us to:",opts:["Judge likelihood based on how well something matches a prototype","Anchor on initial information","Judge likelihood based on how easily examples come to mind","Seek confirming evidence"],ans:2,exp:"The availability heuristic judges probability based on mental availability, meaning how quickly examples come to mind (often influenced by media, recency, or vividness)."},
+{q:"The availability heuristic leads us to:",opts:["Judge likelihood based on how well something matches a prototype","Anchor on initial information","Judge likelihood based on how easily examples come to mind","Seek confirming evidence"],ans:2,exp:"The availability heuristic judges probability based on mental availability - how quickly examples come to mind (often influenced by media, recency, or vividness)."},
 {q:"According to Chomsky, the Language Acquisition Device (LAD) is:",opts:["A teaching method for language","An innate biological mechanism for learning language","A type of reinforcement","A cultural tool"],ans:1,exp:"Chomsky argued humans have an innate, biological capacity (LAD) that allows children to acquire language naturally."},
 {q:"In the James-Lange theory of emotion, which comes FIRST?",opts:["Cognitive appraisal","Subjective emotional experience","Physiological arousal","Simultaneous arousal and emotion"],ans:2,exp:"James-Lange: Event triggers physiological arousal FIRST, then we interpret that arousal as emotion. 'I am trembling, therefore I am afraid.'"},
 {q:"The Yerkes-Dodson law states that performance is best at:",opts:["Low arousal","High arousal","Moderate arousal (for complex tasks)","Arousal doesn't affect performance"],ans:2,exp:"Yerkes-Dodson: optimal performance occurs at moderate arousal for complex tasks. Simple tasks benefit from higher arousal."},
@@ -838,7 +975,7 @@ const quizData=[
 {q:"The fundamental attribution error is the tendency to:",opts:["Attribute our own failures to external factors","Overattribute others' behavior to their character rather than their situation","Conform to group pressure","Attribute everything to luck"],ans:1,exp:"The FAE is overestimating dispositional (internal/character) factors and underestimating situational factors when explaining OTHER people's behavior."},
 {q:"In Milgram's obedience study, approximately what percentage administered the maximum shock?",opts:["10%","35%","50%","65%"],ans:3,exp:"About 65% of participants administered the maximum 450-volt 'shock' when instructed by the authority figure, demonstrating the powerful influence of obedience to authority."},
 {q:"Cognitive dissonance is best described as:",opts:["Disagreement between two people","Discomfort from holding conflicting cognitions or behaving contrary to beliefs","A type of reinforcement schedule","Conformity to group norms"],ans:1,exp:"Cognitive dissonance (Festinger) is the psychological tension when our behavior conflicts with our attitudes, motivating us to change one or the other."},
-{q:"The bystander effect is MOST likely when:",opts:["Only one person is present","A large number of people are present","The victim is a child","The situation is very clear"],ans:1,exp:"The bystander effect increases with more people present due to diffusion of responsibility, meaning each person feels less personally responsible to act."},
+{q:"The bystander effect is MOST likely when:",opts:["Only one person is present","A large number of people are present","The victim is a child","The situation is very clear"],ans:1,exp:"The bystander effect increases with more people present due to diffusion of responsibility - each person feels less personally responsible to act."},
 {q:"Which research method can establish cause-and-effect relationships?",opts:["Correlational study","Case study","Experiment","Naturalistic observation"],ans:2,exp:"Only experiments (with manipulation of IV, control of confounds, and random assignment) can establish causal relationships."},
 {q:"Random assignment is used to:",opts:["Ensure the sample represents the population","Control confounding variables by equalizing groups","Increase sample size","Measure the dependent variable"],ans:1,exp:"Random assignment ensures each participant has an equal chance of being in any condition, which controls for confounding variables (internal validity)."},
 {q:"A correlation coefficient of -0.85 indicates:",opts:["A weak negative relationship","A strong negative relationship","A strong positive relationship","No relationship"],ans:1,exp:"The magnitude (0.85) indicates a strong relationship, and the negative sign indicates an inverse relationship. Strength is about the absolute value, not the sign."},
@@ -846,34 +983,58 @@ const quizData=[
 {q:"Bandura's Bobo doll experiment demonstrated:",opts:["Classical conditioning","Operant conditioning","Observational learning","Habituation"],ans:2,exp:"Bandura showed children who observed an adult behaving aggressively toward a Bobo doll later imitated that aggressive behavior, demonstrating observational (social) learning."}
 ];
 
-let quizScore=0,quizAnswered=0;
-const qc=document.getElementById('quiz-container');
-quizData.forEach((q,i)=>{
-  const d=document.createElement('div');d.className='quiz-q';d.id='qq'+i;
-  let h=`<p>${i+1}. ${q.q}</p>`;
-  q.opts.forEach((o,j)=>{h+=`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`;});
-  h+=`<button class="check-btn" onclick="checkQuiz(${i})">Check Answer</button>`;
-  h+=`<div class="feedback" id="fb${i}"></div>`;
-  d.innerHTML=h;qc.appendChild(d);
+var quizScore=0, quizAnswered=0;
+var qc=document.getElementById('quiz-container');
+quizData.forEach(function(q,i){
+  var d=document.createElement('div');
+  d.className='quiz-q';
+  d.id='qq'+i;
+  var h='<p id="qlabel'+i+'"><strong>'+(i+1)+'.</strong> '+q.q+'</p>';
+  h+='<fieldset style="border:none;padding:0;margin:0"><legend class="sr-only">Question '+(i+1)+': '+q.q+'</legend>';
+  q.opts.forEach(function(o,j){
+    h+='<label><input type="radio" name="q'+i+'" value="'+j+'" aria-label="Option '+(j+1)+': '+o+'"> '+o+'</label>';
+  });
+  h+='</fieldset>';
+  h+='<button class="check-btn" onclick="checkQuiz('+i+')">Check Answer</button>';
+  h+='<div class="feedback" id="fb'+i+'" role="alert" aria-live="assertive"></div>';
+  d.innerHTML=h;
+  qc.appendChild(d);
 });
+
 function checkQuiz(i){
-  const sel=document.querySelector(`input[name="q${i}"]:checked`);
+  var sel=document.querySelector('input[name="q'+i+'"]:checked');
   if(!sel)return;
-  const v=parseInt(sel.value),fb=document.getElementById('fb'+i),btn=document.querySelector(`#qq${i} .check-btn`);
+  var v=parseInt(sel.value);
+  var fb=document.getElementById('fb'+i);
+  var btn=document.querySelector('#qq'+i+' .check-btn');
   btn.disabled=true;
-  document.querySelectorAll(`input[name="q${i}"]`).forEach(r=>r.disabled=true);
+  document.querySelectorAll('input[name="q'+i+'"]').forEach(function(r){r.disabled=true;});
   quizAnswered++;
-  if(v===quizData[i].ans){quizScore++;fb.className='feedback correct';fb.innerHTML='<span aria-hidden="true">✓</span> Correct! '+quizData[i].exp;}
-  else{fb.className='feedback incorrect';fb.innerHTML='<span aria-hidden="true">✗</span> Incorrect. '+quizData[i].exp;}
+  if(v===quizData[i].ans){
+    quizScore++;
+    fb.className='feedback correct';
+    fb.innerHTML='\u2713 Correct! '+quizData[i].exp;
+    announce('Correct! '+quizData[i].exp);
+  } else {
+    fb.className='feedback incorrect';
+    fb.innerHTML='\u2717 Incorrect. '+quizData[i].exp;
+    announce('Incorrect. '+quizData[i].exp);
+  }
   fb.style.display='block';
-  document.getElementById('quiz-progress').textContent=`Score: ${quizScore} / ${quizAnswered}`;
-  if(quizAnswered===quizData.length){document.getElementById('quiz-final').textContent=`Final Score: ${quizScore} / ${quizData.length} (${Math.round(quizScore/quizData.length*100)}%)`;document.getElementById('quiz-final').style.display='block';}
+  document.getElementById('quiz-progress').textContent='Score: '+quizScore+' / '+quizAnswered;
+  if(quizAnswered===quizData.length){
+    var pct=Math.round(quizScore/quizData.length*100);
+    document.getElementById('quiz-final').textContent='Final Score: '+quizScore+' / '+quizData.length+' ('+pct+'%)';
+    document.getElementById('quiz-final').style.display='block';
+    announce('Quiz complete. Final score: '+quizScore+' out of '+quizData.length+', '+pct+' percent.');
+  }
 }
 
 // ===== FLASHCARD DATA =====
+// All back fields use plain text only (no HTML spans) so textContent renders correctly
 const fcData=[
 {cat:"Biological",front:"What is the all-or-none principle?",back:"A neuron either fires completely or not at all. There is no partial firing. The action potential is always the same magnitude once threshold is reached."},
-{cat:"Biological",front:"What does the myelin sheath do?",back:"Insulates the axon and speeds neural transmission via saltatory conduction (signal 'jumps' between Nodes of Ranvier). Made by Schwann cells (PNS) or oligodendrocytes (CNS)."},
+{cat:"Biological",front:"What does the myelin sheath do?",back:"Insulates the axon and speeds neural transmission via saltatory conduction (signal jumps between Nodes of Ranvier). Made by Schwann cells (PNS) or oligodendrocytes (CNS)."},
 {cat:"Biological",front:"What is the function of the hypothalamus?",back:"Regulates hunger, thirst, body temperature, circadian rhythms, and controls the pituitary gland (master gland). Key link between the nervous system and endocrine system."},
 {cat:"Biological",front:"What is the role of the hippocampus?",back:"Essential for forming new explicit (declarative) memories. Damage leads to anterograde amnesia (inability to form new memories). Part of the limbic system."},
 {cat:"Biological",front:"Name the main inhibitory and excitatory neurotransmitters.",back:"GABA is the main inhibitory neurotransmitter (calming). Glutamate is the main excitatory neurotransmitter (involved in learning and memory)."},
@@ -891,7 +1052,7 @@ const fcData=[
 {cat:"Learning",front:"What is a variable-ratio schedule? Give an example.",back:"Reinforcement after an unpredictable number of responses. Produces highest, steadiest response rate and greatest resistance to extinction. Example: slot machines, fishing."},
 {cat:"Learning",front:"What are the four steps of observational learning?",back:"Attention (notice the model), Retention (remember the behavior), Reproduction (ability to perform it), Motivation (desire or reason to do it). From Bandura's social learning theory."},
 {cat:"Learning",front:"What is learned helplessness?",back:"When an organism learns it cannot control outcomes, it stops trying even when escape becomes possible. Discovered by Seligman. Linked to depression and passivity."},
-{cat:"Memory",front:"What are the three stages of the Atkinson-Shiffrin memory model?",back:"Sensory memory (brief buffer) <span aria-hidden="true">→</span> Short-term/working memory (limited capacity, ~30 sec) <span aria-hidden="true">→</span> Long-term memory (unlimited capacity, potentially permanent). Attention moves info from sensory to STM; encoding moves it to LTM."},
+{cat:"Memory",front:"What are the three stages of the Atkinson-Shiffrin memory model?",back:"Sensory memory (brief buffer) \u2192 Short-term/working memory (limited capacity, ~30 sec) \u2192 Long-term memory (unlimited capacity, potentially permanent). Attention moves info from sensory to STM; encoding moves it to LTM."},
 {cat:"Memory",front:"What is the difference between episodic and semantic memory?",back:"Both are types of explicit (declarative) memory. Episodic = personal experiences/events ('what I had for breakfast'). Semantic = general knowledge/facts ('the capital of France is Paris')."},
 {cat:"Memory",front:"What is the difference between proactive and retroactive interference?",back:"Proactive: OLD info interferes with NEW learning (pro = forward). Retroactive: NEW info interferes with OLD memories (retro = backward)."},
 {cat:"Memory",front:"What is the levels of processing framework?",back:"Craik and Lockhart: deeper processing leads to better memory. Shallow = structural (appearance). Intermediate = phonemic (sound). Deep = semantic (meaning). Semantic processing produces the best retention."},
@@ -901,7 +1062,7 @@ const fcData=[
 {cat:"Cognition",front:"What is confirmation bias?",back:"The tendency to search for, interpret, and remember information in a way that confirms preexisting beliefs while ignoring contradictory evidence."},
 {cat:"Cognition",front:"What is the Sapir-Whorf hypothesis?",back:"Linguistic relativity: language influences thought. Strong version (language determines thought) is largely rejected. Weak version (language influences perception and categorization) is widely accepted."},
 {cat:"Cognition",front:"Sternberg's triarchic theory of intelligence?",back:"Three types: Analytical (academic problem-solving), Creative (novel/adaptive thinking), and Practical ('street smarts,' applied intelligence). Traditional IQ tests mainly measure analytical."},
-{cat:"Motivation",front:"What is Maslow's hierarchy of needs (bottom to top)?",back:"Physiological <span aria-hidden="true">→</span> Safety <span aria-hidden="true">→</span> Love/Belonging <span aria-hidden="true">→</span> Esteem <span aria-hidden="true">→</span> Self-actualization. Lower needs generally must be met before higher needs motivate behavior."},
+{cat:"Motivation",front:"What is Maslow's hierarchy of needs (bottom to top)?",back:"Physiological \u2192 Safety \u2192 Love/Belonging \u2192 Esteem \u2192 Self-actualization. Lower needs generally must be met before higher needs motivate behavior."},
 {cat:"Motivation",front:"What is the Schachter-Singer two-factor theory?",back:"Emotion = physiological arousal + cognitive label. We experience arousal, then look to our environment to determine which emotion we're feeling. Context matters."},
 {cat:"Motivation",front:"How does the James-Lange theory differ from Cannon-Bard?",back:"James-Lange: arousal comes FIRST, then emotion (I tremble, so I'm afraid). Cannon-Bard: arousal and emotion occur SIMULTANEOUSLY (I tremble AND feel afraid at the same time)."},
 {cat:"Motivation",front:"What is self-determination theory?",back:"Deci and Ryan: three innate psychological needs drive motivation: Autonomy (control over one's life), Competence (mastery), and Relatedness (connection with others)."},
@@ -916,7 +1077,7 @@ const fcData=[
 {cat:"Personality",front:"What is self-efficacy?",back:"One's belief in their own ability to succeed at a specific task (Bandura). Higher self-efficacy leads to greater effort, persistence, and performance. It is task-specific, not global."},
 {cat:"Disorders",front:"What distinguishes positive from negative symptoms in schizophrenia?",back:"Positive symptoms: added experiences (hallucinations, delusions, disorganized speech). Negative symptoms: reduced/absent behaviors (flat affect, social withdrawal, lack of motivation)."},
 {cat:"Disorders",front:"What is the DSM-5?",back:"Diagnostic and Statistical Manual of Mental Disorders, 5th edition. The standard classification system for psychological disorders used by clinicians in the United States."},
-{cat:"Disorders",front:"How does OCD work?",back:"Obsessions are intrusive, unwanted thoughts causing anxiety. Compulsions are repetitive behaviors performed to reduce that anxiety. The cycle reinforces itself: obsession <span aria-hidden="true">→</span> anxiety <span aria-hidden="true">→</span> compulsion <span aria-hidden="true">→</span> temporary relief."},
+{cat:"Disorders",front:"How does OCD work?",back:"Obsessions are intrusive, unwanted thoughts causing anxiety. Compulsions are repetitive behaviors performed to reduce that anxiety. The cycle reinforces itself: obsession \u2192 anxiety \u2192 compulsion \u2192 temporary relief."},
 {cat:"Disorders",front:"What is the difference between major depression and bipolar disorder?",back:"Major depression: persistent low mood/loss of interest (at least 2 weeks). Bipolar: alternating episodes of mania (elevated mood, energy, impulsivity) and depression."},
 {cat:"Social",front:"What is the fundamental attribution error?",back:"The tendency to overattribute OTHER people's behavior to their personality/character (dispositional) and underestimate the influence of their situation. We do the opposite for ourselves (actor-observer bias)."},
 {cat:"Social",front:"What is cognitive dissonance?",back:"Psychological discomfort when holding two conflicting cognitions, or when behavior contradicts attitudes. Motivates attitude change to reduce the inconsistency. Festinger's theory."},
@@ -927,29 +1088,66 @@ const fcData=[
 {cat:"Research",front:"Random assignment vs. random sampling?",back:"Random assignment: each participant has equal chance of being in any condition (controls confounds = internal validity). Random sampling: each population member has equal chance of selection (allows generalization = external validity)."},
 {cat:"Research",front:"What does p < .05 mean?",back:"The probability that the results occurred by chance alone is less than 5%. The result is considered statistically significant, meaning the effect is likely real and not due to random variation."},
 {cat:"Research",front:"What is a confounding variable?",back:"An uncontrolled variable that varies systematically with the IV and may influence the DV. Confounds threaten internal validity because you can't tell if the IV or the confound caused the effect."},
-{cat:"Research",front:"What is the difference between reliability and validity?",back:"Reliability: consistency of results (test-retest, inter-rater). Validity: accuracy, does it measure what it claims to? A test can be reliable but not valid, but it cannot be valid without being reliable."}
+{cat:"Research",front:"What is the difference between reliability and validity?",back:"Reliability: consistency of results (test-retest, inter-rater). Validity: accuracy - does it measure what it claims to? A test can be reliable but not valid, but it cannot be valid without being reliable."}
 ];
 
-let fcFiltered=[...fcData],fcIdx=0;
-const cats=[...new Set(fcData.map(c=>c.cat))];
-const ff=document.getElementById('fc-filters');
-ff.innerHTML='<button class="fc-filter-btn active" onclick="fcFilter(\'All\',this)">All</button>'+cats.map(c=>`<button class="fc-filter-btn" onclick="fcFilter('${c}',this)">${c}</button>`).join('');
+var fcFiltered=[].concat(fcData), fcIdx=0, fcFlipped=false;
+var cats=[...new Set(fcData.map(function(c){return c.cat;}))];
+var ff=document.getElementById('fc-filters');
+ff.innerHTML='<button class="fc-filter-btn active" onclick="fcFilter(\'All\',this)" aria-pressed="true">All</button>'+
+  cats.map(function(c){return '<button class="fc-filter-btn" onclick="fcFilter(\''+c+'\',this)" aria-pressed="false">'+c+'</button>';}).join('');
+
 function fcFilter(cat,btn){
-  document.querySelectorAll('.fc-filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
-  fcFiltered=cat==='All'?[...fcData]:fcData.filter(c=>c.cat===cat);fcIdx=0;renderFc();
+  document.querySelectorAll('.fc-filter-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-pressed','false');});
+  btn.classList.add('active');
+  btn.setAttribute('aria-pressed','true');
+  fcFiltered=cat==='All'?[].concat(fcData):fcData.filter(function(c){return c.cat===cat;});
+  fcIdx=0;
+  renderFc();
+  announce('Showing '+fcFiltered.length+' '+cat+' flashcards');
 }
+
 function renderFc(){
-  if(!fcFiltered.length){document.getElementById('fc-prompt').textContent='No cards in this category';document.getElementById('fc-cat').textContent='';document.getElementById('fc-answer').textContent='';document.getElementById('fc-count').textContent='0 / 0';document.getElementById('fc-counter').textContent='0 cards';return;}
-  const c=fcFiltered[fcIdx];
-  document.getElementById('fc-card').classList.remove('flipped');
+  if(!fcFiltered.length){
+    document.getElementById('fc-prompt').textContent='No cards in this category';
+    document.getElementById('fc-cat').textContent='';
+    document.getElementById('fc-answer').textContent='';
+    document.getElementById('fc-count').textContent='0 / 0';
+    document.getElementById('fc-counter').textContent='0 cards';
+    return;
+  }
+  var c=fcFiltered[fcIdx];
+  var card=document.getElementById('fc-card');
+  card.classList.remove('flipped');
+  fcFlipped=false;
+  card.setAttribute('aria-label','Flashcard '+(fcIdx+1)+' of '+fcFiltered.length+'. Category: '+c.cat+'. Question: '+c.front+'. Press Enter or Space to reveal answer.');
   document.getElementById('fc-cat').textContent=c.cat;
   document.getElementById('fc-prompt').textContent=c.front;
   document.getElementById('fc-answer').textContent=c.back;
-  document.getElementById('fc-count').textContent=`${fcIdx+1} / ${fcFiltered.length}`;
-  document.getElementById('fc-counter').textContent=`${fcFiltered.length} cards`;
+  document.getElementById('fc-count').textContent=(fcIdx+1)+' / '+fcFiltered.length;
+  document.getElementById('fc-counter').textContent=fcFiltered.length+' cards';
 }
-function flipCard(){document.getElementById('fc-card').classList.toggle('flipped');}
-function fcNav(d){fcIdx=(fcIdx+d+fcFiltered.length)%fcFiltered.length;renderFc();}
+
+function flipCard(){
+  var card=document.getElementById('fc-card');
+  card.classList.toggle('flipped');
+  fcFlipped=!fcFlipped;
+  if(fcFlipped){
+    var c=fcFiltered[fcIdx];
+    announce('Answer: '+c.back);
+    card.setAttribute('aria-label','Answer revealed. '+c.back+'. Press Enter or Space to flip back.');
+  } else {
+    var c=fcFiltered[fcIdx];
+    card.setAttribute('aria-label','Flashcard '+(fcIdx+1)+' of '+fcFiltered.length+'. Question: '+c.front+'. Press Enter or Space to reveal answer.');
+  }
+}
+
+function fcNav(d){
+  fcIdx=(fcIdx+d+fcFiltered.length)%fcFiltered.length;
+  renderFc();
+  announce('Card '+(fcIdx+1)+' of '+fcFiltered.length+': '+fcFiltered[fcIdx].front);
+}
+
 renderFc();
 
 // ===== SHORT ANSWER DATA =====
@@ -987,42 +1185,45 @@ concepts:[{term:"trust",w:2},{term:"mistrust",w:1},{term:"autonomy",w:2},{term:"
 model:"Erikson's first five psychosocial stages: Trust vs. Mistrust (0-1 year, developing basic trust through reliable caregiving), Autonomy vs. Shame/Doubt (1-3, developing independence and self-control), Initiative vs. Guilt (3-6, taking initiative in activities and play), Industry vs. Inferiority (6-12, developing competence through achievement), and Identity vs. Role Confusion (12-18, forming a coherent sense of self). Each stage presents a crisis that shapes personality development."}
 ];
 
-const sac=document.getElementById('sa-container');
-saData.forEach((q,i)=>{
-  const d=document.createElement('div');d.className='sa-q';d.id='sa'+i;
-  d.innerHTML=`<p>${i+1}. ${q.q}</p><textarea placeholder="Type your answer here..."></textarea><button class="sa-btn" onclick="gradeSA(${i})">Grade Answer</button><div class="sa-result" id="sar${i}"></div>`;
+var sac=document.getElementById('sa-container');
+saData.forEach(function(q,i){
+  var d=document.createElement('div');
+  d.className='sa-q';
+  d.id='sa'+i;
+  var tid='sa-textarea-'+i;
+  d.innerHTML='<p id="sa-label'+i+'"><strong>'+(i+1)+'.</strong> '+q.q+'</p>'+
+    '<label for="'+tid+'" class="sr-only">Your answer for question '+(i+1)+'</label>'+
+    '<textarea id="'+tid+'" aria-labelledby="sa-label'+i+'" placeholder="Type your answer here..."></textarea>'+
+    '<button class="sa-btn" onclick="gradeSA('+i+')">Grade Answer</button>'+
+    '<div class="sa-result" id="sar'+i+'" role="status" aria-live="polite"></div>';
   sac.appendChild(d);
 });
+
 function gradeSA(i){
-  const ans=document.querySelector(`#sa${i} textarea`).value.toLowerCase();
+  var ans=document.querySelector('#sa'+i+' textarea').value.toLowerCase();
   if(!ans.trim())return;
-  const q=saData[i];let earned=0,total=0,tags=[];
-  q.concepts.forEach(c=>{
+  var q=saData[i];
+  var earned=0, total=0, tags=[];
+  q.concepts.forEach(function(c){
     total+=c.w;
-    const found=ans.includes(c.term.toLowerCase());
-    if(found){earned+=c.w;tags.push(`<span class="sa-tag hit"><span aria-hidden="true">✓</span> ${c.term}</span>`);}
-    else{tags.push(`<span class="sa-tag miss"><span aria-hidden="true">✗</span> ${c.term}</span>`);}
+    var found=ans.includes(c.term.toLowerCase());
+    if(found){
+      earned+=c.w;
+      tags.push('<span class="sa-tag hit">\u2713 '+c.term+'</span>');
+    } else {
+      tags.push('<span class="sa-tag miss">\u2717 '+c.term+'</span>');
+    }
   });
-  const pct=Math.round(earned/total*100);
-  const color=pct>=70?'#4caf50':pct>=40?'#ff9800':'#f44336';
-  const r=document.getElementById('sar'+i);
-  r.innerHTML=`<div class="sa-score-bar"><div class="sa-score-fill" style="width:${pct}%;background:${color}"></div></div><div style="font-weight:600;color:${color};font-size:.9rem">${pct}% concept coverage</div><div class="sa-tags">${tags.join('')}</div><details class="sa-model"><summary>View Model Answer</summary><p>${q.model}</p></details>`;
+  var pct=Math.round(earned/total*100);
+  var color=pct>=70?'#4caf50':pct>=40?'#ff9800':'#f44336';
+  var r=document.getElementById('sar'+i);
+  r.innerHTML='<div class="sa-score-bar"><div class="sa-score-fill" style="width:'+pct+'%;background:'+color+'"></div></div>'+
+    '<div style="font-weight:600;color:'+color+';font-size:.9rem">'+pct+'% concept coverage</div>'+
+    '<div class="sa-tags">'+tags.join('')+'</div>'+
+    '<details class="sa-model"><summary>View Model Answer</summary><p>'+q.model+'</p></details>';
   r.style.display='block';
+  announce(pct+' percent concept coverage. '+earned+' of '+total+' points.');
 }
 </script>
-
-</main>
-
-<footer>
-  <p>Psychology Fundamentals &mdash; Essential Study Reference</p>
-</footer>
-<div style="max-width: 800px; margin: 40px auto; padding: 20px 30px; background: #fff8e1; border-left: 4px solid #f9a825; border-radius: 8px; font-size: 14px; line-height: 1.6; color: #555;">
-  <div style="font-weight: bold; font-size: 15px; margin-bottom: 10px;"><span aria-hidden="true">⚠️</span> Important Notice</div>
-  <p style="margin: 0 0 10px 0;">These study resources are provided free of charge for educational purposes only. They are intended as supplemental study aids and should not be used as a substitute for your course textbooks, lecture materials, or the guidance of your instructors.</p>
-  <p style="margin: 0 0 10px 0;">While every effort has been made to ensure accuracy, this content may contain errors, omissions, or information that is out of date. Science is constantly evolving, and material that was accurate at the time of writing may no longer reflect current understanding. Always verify important facts, formulas, and concepts against your official course materials.</p>
-  <p style="margin: 0 0 10px 0;">No guarantees are made regarding the completeness, accuracy, or reliability of any information presented on these sites. Use at your own discretion. If you spot an error, we appreciate you letting us know so it can be corrected.</p>
-  <p style="margin: 0 0 10px 0;">These materials are not affiliated with, endorsed by, or officially connected to any university, college, testing organization, or textbook publisher. All content represents the independent work and ideas of the author.</p>
-  <p style="margin: 0;">This resource is provided "as is" without warranty of any kind, express or implied. The author assumes no liability for any errors or for any actions taken based on the information provided here.</p>
-</div>
 </body>
 </html>
